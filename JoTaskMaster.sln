@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoTaskMaster.Api", "JoTaskMaster\JoTaskMaster.Api.csproj", "{23640FBD-E346-4A33-89B9-FD20E0165407}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientApp", "ClientApp", "{DED0160E-A597-4D98-9155-8997E6D7917D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerApp", "ServerApp", "{4F6D0701-D18B-491F-9D84-8BB91AFA03AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F47887F8-7FAF-465A-9361-079709E03030}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D312DEDC-F5FF-49CB-BA95-A6B8FF12BDB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4632589C-6946-44B5-985A-E21072BE3A5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoTaskMaster.Domain", "JoTaskMaster.Domain\JoTaskMaster.Domain.csproj", "{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoTaskMaster.Application", "JoTaskMaster.Application\JoTaskMaster.Application.csproj", "{DC8245E6-002C-4605-AA70-7BC26873C350}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoTaskMaster.Infrastructure.Services", "JoTaskMaster.Infrastructure.Services\JoTaskMaster.Infrastructure.Services.csproj", "{7921F097-F031-471F-97B4-158CAD398E19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoTaskMaster.Persistence.RelationalDB", "JoTaskMaster.Persistence.RelationalDB\JoTaskMaster.Persistence.RelationalDB.csproj", "{57893C18-AF1C-44C6-9F55-54DE94139D91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{E7E31AC6-B5BC-4A4F-91CB-6F14F0BC2D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoTaskMaster.Shared", "JoTaskMaster.Shared\JoTaskMaster.Shared.csproj", "{887B495C-F014-4AEF-AE67-917F0FB21952}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23640FBD-E346-4A33-89B9-FD20E0165407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23640FBD-E346-4A33-89B9-FD20E0165407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23640FBD-E346-4A33-89B9-FD20E0165407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23640FBD-E346-4A33-89B9-FD20E0165407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC8245E6-002C-4605-AA70-7BC26873C350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC8245E6-002C-4605-AA70-7BC26873C350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC8245E6-002C-4605-AA70-7BC26873C350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC8245E6-002C-4605-AA70-7BC26873C350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7921F097-F031-471F-97B4-158CAD398E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7921F097-F031-471F-97B4-158CAD398E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7921F097-F031-471F-97B4-158CAD398E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7921F097-F031-471F-97B4-158CAD398E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57893C18-AF1C-44C6-9F55-54DE94139D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57893C18-AF1C-44C6-9F55-54DE94139D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57893C18-AF1C-44C6-9F55-54DE94139D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57893C18-AF1C-44C6-9F55-54DE94139D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887B495C-F014-4AEF-AE67-917F0FB21952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887B495C-F014-4AEF-AE67-917F0FB21952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887B495C-F014-4AEF-AE67-917F0FB21952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887B495C-F014-4AEF-AE67-917F0FB21952}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23640FBD-E346-4A33-89B9-FD20E0165407} = {4632589C-6946-44B5-985A-E21072BE3A5D}
+		{F47887F8-7FAF-465A-9361-079709E03030} = {4F6D0701-D18B-491F-9D84-8BB91AFA03AB}
+		{D312DEDC-F5FF-49CB-BA95-A6B8FF12BDB7} = {4F6D0701-D18B-491F-9D84-8BB91AFA03AB}
+		{4632589C-6946-44B5-985A-E21072BE3A5D} = {4F6D0701-D18B-491F-9D84-8BB91AFA03AB}
+		{CDC1C70F-F259-47E7-9C53-4AD244C5AB0E} = {F47887F8-7FAF-465A-9361-079709E03030}
+		{DC8245E6-002C-4605-AA70-7BC26873C350} = {F47887F8-7FAF-465A-9361-079709E03030}
+		{7921F097-F031-471F-97B4-158CAD398E19} = {D312DEDC-F5FF-49CB-BA95-A6B8FF12BDB7}
+		{57893C18-AF1C-44C6-9F55-54DE94139D91} = {D312DEDC-F5FF-49CB-BA95-A6B8FF12BDB7}
+		{E7E31AC6-B5BC-4A4F-91CB-6F14F0BC2D5F} = {4F6D0701-D18B-491F-9D84-8BB91AFA03AB}
+		{887B495C-F014-4AEF-AE67-917F0FB21952} = {E7E31AC6-B5BC-4A4F-91CB-6F14F0BC2D5F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE7EF544-8F64-40C0-8BAA-A7CAD99027DC}
+	EndGlobalSection
+EndGlobal

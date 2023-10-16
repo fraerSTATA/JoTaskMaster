@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>890a1777-f44b-4ef0-a6d1-e2d459a2b730</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JoTaskMaster.Application\JoTaskMaster.Application.csproj" />
+    <ProjectReference Include="..\JoTaskMaster.Domain\JoTaskMaster.Domain.csproj" />
+    <ProjectReference Include="..\JoTaskMaster.Infrastructure.Services\JoTaskMaster.Infrastructure.Services.csproj" />
+    <ProjectReference Include="..\JoTaskMaster.Persistence.RelationalDB\JoTaskMaster.Persistence.RelationalDB.csproj" />
+    <ProjectReference Include="..\JoTaskMaster.Shared\JoTaskMaster.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
