@@ -33,11 +33,10 @@ namespace JoTaskMaster.Application.Features.Users.Queries.GetUserById
 
         public async Task<Result<UserDTO>> Handle(GetUserByIdQuery query, CancellationToken cancellationToken)
         {
-            var entity =  await _userService.GetUserByIdAsync(query.Id);           
-            var user = _mapper.Map<UserDTO>(entity);
+            var user =  await _userService.GetUserByIdAsync(query.Id);           
             if (user != null)
             {
-                return await Result<UserDTO>.SuccessAsync(user);
+                return await Result<UserDTO>.SuccessAsync(_mapper.Map<UserDTO>(user));
             }
             else
             {

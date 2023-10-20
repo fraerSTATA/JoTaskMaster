@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\CommandExceptions\" />
     <Folder Include="Exceptions\QueryExceptions\" />
-    <Folder Include="Features\Users\Commands\UpdateCommand\" />
   </ItemGroup>
 
   <ItemGroup>

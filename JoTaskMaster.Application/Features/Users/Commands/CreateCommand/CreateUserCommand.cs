@@ -33,13 +33,11 @@ namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
 
     internal class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<int>>
     {
-        private readonly IMapper _mapper = null!;
         private readonly IUserService _userService = null!;
         private readonly ISecurityService _securityService = null!;
 
-        public CreateUserCommandHandler(IUserService userService, IMapper mapper, ISecurityService securityService)
+        public CreateUserCommandHandler(IUserService userService,ISecurityService securityService)
         {
-            _mapper = mapper;
             _userService = userService;
             _securityService = securityService;
         }
@@ -48,8 +46,6 @@ namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
 
         public async Task<Result<int>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-
-
             var user = new User
             {
                 UserName = request.UserName,
@@ -57,7 +53,8 @@ namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
                 UserSurname = request.UserSurname,
                 UserCompanyId = request.UserCompanyId,
                 UserRoleId = request.UserRoleId,
-                RegistryDate = request.RegistryDate
+                RegistryDate = request.RegistryDate,
+                CreatedDate = DateTime.Now
             };
 
             await _userService.CreateUserAsync(user);
@@ -65,7 +62,4 @@ namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
             return await Result<int>.SuccessAsync(user.Id, "User created");
         }
     }
-
-
-
 }

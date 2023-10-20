@@ -22,7 +22,10 @@ namespace JoTaskMaster.Infrastructure.Services.Extenstions
             services
                 .AddTransient<IMediator, Mediator>()
                 .AddTransient<IUserService, UserService>()
-                .AddTransient<ISecurityService, SecurityService>();
+                .AddTransient<ISecurityService, SecurityService>()
+                .AddTransient<ICompanyService, CompanyService>(); 
+
+
         }
     }
 }

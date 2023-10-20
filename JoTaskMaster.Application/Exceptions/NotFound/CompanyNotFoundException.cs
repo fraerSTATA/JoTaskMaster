@@ -1,4 +1,5 @@
 ﻿using JoTaskMaster.Application.Exceptions.Base;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Exceptions.NotFound
 {
-    public class UserNotFoundException : WorkException
+    public class CompanyNotFoundException : WorkException
     {
-        public UserNotFoundException(string message = "User not found") : base(message ) 
+        public CompanyNotFoundException(string message = "Company not found in server Database") : base(message)
         {
             StatusCode = HttpStatusCode.NotFound;
-            ProblemDetails = new ()
+            ProblemDetails = new()
             {
-                Status = (int) StatusCode,
-                Title = Message,
+                Status = (int)StatusCode,
+                Title = "Company not found",
                 Type = "Not Found Error",
-                Detail = "User not found in Server Database"
+                Detail = message
             };
         }
 
-        public UserNotFoundException(ProblemDetails pd, string message = "User not found") : base(message)
+        public CompanyNotFoundException(ProblemDetails pd, string message = "Company not found in server Database") : base(message)
         {
             StatusCode = HttpStatusCode.NotFound;
             ProblemDetails = pd;
