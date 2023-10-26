@@ -5,7 +5,6 @@ namespace JoTaskMaster.Domain.Entities;
 
 public partial class StatusType : BaseAuditableEntity
 {
-
     public string StatusName { get; set; } = null!;
 
     public virtual ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();

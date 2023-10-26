@@ -5,7 +5,6 @@ namespace JoTaskMaster.Domain.Entities;
 
 public partial class Note : BaseAuditableEntity
 {
-
     public int ProjectNoteId { get; set; }
 
     public DateTime NoteDate { get; set; }

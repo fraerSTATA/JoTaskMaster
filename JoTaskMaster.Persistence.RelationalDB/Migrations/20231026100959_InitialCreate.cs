@@ -19,7 +19,6 @@ namespace JoTaskMaster.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -35,7 +34,6 @@ namespace JoTaskMaster.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MethodName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -47,10 +45,11 @@ namespace JoTaskMaster.Domain.Migrations
                 name: "Project_files",
                 columns: table => new
                 {
-                    FileID = table.Column<int>(type: "int", fixedLength: true, maxLength: 10, nullable: false)
+                    FileID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -66,7 +65,6 @@ namespace JoTaskMaster.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -82,7 +80,6 @@ namespace JoTaskMaster.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StatusName = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -96,12 +93,15 @@ namespace JoTaskMaster.Domain.Migrations
                 {
                     UserID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "(N'')"),
+                    UserName = table.Column<string>(type: "varchar(40)", unicode: false, maxLength: 40, nullable: false, defaultValueSql: "(N'')"),
+                    UserSurname = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "(N'')"),
+                    Nickname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     UserCompanyID = table.Column<int>(type: "int", nullable: false),
                     UserRoleID = table.Column<int>(type: "int", nullable: false),
                     RegistryDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -127,12 +127,10 @@ namespace JoTaskMaster.Domain.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ProjectModelID = table.Column<int>(type: "int", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     StatusID = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     UserManagerID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -166,7 +164,6 @@ namespace JoTaskMaster.Domain.Migrations
                     NoteMessage = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     NoteUserID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -192,7 +189,6 @@ namespace JoTaskMaster.Domain.Migrations
                     ProjectID = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -225,7 +221,6 @@ namespace JoTaskMaster.Domain.Migrations
                     SubTaskID = table.Column<int>(type: "int", nullable: true),
                     TaskPriorityID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -252,18 +247,17 @@ namespace JoTaskMaster.Domain.Migrations
                 name: "Task_Responses",
                 columns: table => new
                 {
-                    TaskResponse = table.Column<int>(type: "int", nullable: false)
+                    TaskResponseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TaskID = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     TaskMassage = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Task_Responses", x => x.TaskResponse);
+                    table.PrimaryKey("PK_Task_Responses", x => x.TaskResponseID);
                     table.ForeignKey(
                         name: "FK_Task_Responses_ProjectTasks",
                         column: x => x.TaskID,
@@ -281,23 +275,22 @@ namespace JoTaskMaster.Domain.Migrations
                 columns: table => new
                 {
                     TaskID = table.Column<int>(type: "int", nullable: false),
-                    TaskUser = table.Column<int>(type: "int", nullable: false),
+                    ProjectTaskID = table.Column<int>(type: "int", nullable: false),
                     UserTaskID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserTasks", x => x.TaskID);
                     table.ForeignKey(
-                        name: "FK_UserTasks_ProjectTasks",
-                        column: x => x.TaskID,
+                        name: "FK_UserTasks_ProjectTasks1",
+                        column: x => x.ProjectTaskID,
                         principalTable: "ProjectTasks",
                         principalColumn: "TaskID");
                     table.ForeignKey(
-                        name: "FK_UserTasks_Users",
-                        column: x => x.TaskUser,
+                        name: "FK_UserTasks_Users1",
+                        column: x => x.UserTaskID,
                         principalTable: "Users",
                         principalColumn: "UserID");
                 });
@@ -370,7 +363,12 @@ namespace JoTaskMaster.Domain.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserTasks_TaskUser",
                 table: "UserTasks",
-                column: "TaskUser");
+                column: "ProjectTaskID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserTasks_UserTaskID",
+                table: "UserTasks",
+                column: "UserTaskID");
         }
 
         /// <inheritdoc />

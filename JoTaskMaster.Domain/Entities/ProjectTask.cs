@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace JoTaskMaster.Domain.Entities;
 
 public partial class ProjectTask : BaseAuditableEntity
-{ 
-
+{
     public int ProjectTaskId { get; set; }
 
     public DateTime? TaskDate { get; set; }

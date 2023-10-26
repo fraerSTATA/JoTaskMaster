@@ -5,7 +5,6 @@ namespace JoTaskMaster.Domain.Entities;
 
 public partial class TaskResponse : BaseAuditableEntity
 {
-
     public int TaskId { get; set; }
 
     public int UserId { get; set; }

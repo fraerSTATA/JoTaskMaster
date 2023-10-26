@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace JoTaskMaster.Domain.Entities;
 
 public partial class User : BaseAuditableEntity
 {
-    [Key]
-    public string Nickname { get; set; } = null!;   
     public string Email { get; set; } = null!;
-    public string UserSurname { get; set; } = null!;
+
     public string UserName { get; set; } = null!;
+
+    public string UserSurname { get; set; } = null!;
+
+    public string Nickname { get; set; } = null!;
+
     public string Password { get; set; } = null!;
 
     public int UserCompanyId { get; set; }

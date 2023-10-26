@@ -6,11 +6,11 @@ namespace JoTaskMaster.Domain.Entities;
 public partial class UserTask : BaseAuditableEntity
 {
 
-    public int TaskUser { get; set; }
+    public int ProjectTaskId { get; set; }
 
     public int UserTaskId { get; set; }
 
-    public virtual ProjectTask Task { get; set; } = null!;
+    public virtual ProjectTask ProjectTask { get; set; } = null!;
 
-    public virtual User TaskUserNavigation { get; set; } = null!;
+    public virtual User UserTaskNavigation { get; set; } = null!;
 }
