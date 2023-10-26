@@ -1,6 +1,7 @@
 ﻿using JoTaskMaster.Application.Common.Mapping;
 using JoTaskMaster.Application.Exceptions.Base;
 using JoTaskMaster.Application.Exceptions.CommandExceptions;
+using JoTaskMaster.Application.Exceptions.CommandExceptions.UpdateCommandExceptions;
 using JoTaskMaster.Application.Exceptions.NotFound;
 using JoTaskMaster.Application.Features.Users.Queries;
 using JoTaskMaster.Application.Interfaces.Services;

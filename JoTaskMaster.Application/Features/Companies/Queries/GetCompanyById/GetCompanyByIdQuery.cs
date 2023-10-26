@@ -32,7 +32,7 @@ namespace JoTaskMaster.Application.Features.Companies.Queries
         }
         public async Task<Result<CompanyDTO>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
         {
-            var company = _companyService.GetCompanyByIdAsync(request.Id);
+            var company = await _companyService.GetCompanyByIdAsync(request.Id);
             if(company == null)
             {
                 throw new CompanyNotFoundException($"Company with id = {request.Id} NOT FOUND!");

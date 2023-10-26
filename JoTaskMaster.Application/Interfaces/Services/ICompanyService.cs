@@ -16,7 +16,7 @@ namespace JoTaskMaster.Application.Interfaces.Services
         public void DeleteCompany(int id);
         public Task<int> DeleteCompanyAsync(int id);          
         public void UpdateCompany(Company company);
-        public Task<int> UpdateCompanyAsync(Company company);\
+        public Task<int> UpdateCompanyAsync(Company company);
         
         #endregion
         

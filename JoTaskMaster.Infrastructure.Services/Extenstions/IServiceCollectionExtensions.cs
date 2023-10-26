@@ -23,7 +23,13 @@ namespace JoTaskMaster.Infrastructure.Services.Extenstions
                 .AddTransient<IMediator, Mediator>()
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<ISecurityService, SecurityService>()
-                .AddTransient<ICompanyService, CompanyService>(); 
+                .AddTransient<ICompanyService, CompanyService>()
+                .AddTransient<IProjectService, ProjectService>()
+                .AddTransient<IStatusTypeService, StatusTypeService>()
+                .AddTransient<ILifecycleMethodService, LifecycleMethodService>();
+
+
+
 
 
         }

@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Exceptions\QueryExceptions\" />
+    <Folder Include="Features\Projects\Queries\GetProjectsByCompany\" />
+    <Folder Include="Features\Tasks\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
