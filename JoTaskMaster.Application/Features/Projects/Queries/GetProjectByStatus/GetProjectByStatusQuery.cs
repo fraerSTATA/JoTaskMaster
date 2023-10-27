@@ -5,11 +5,6 @@ using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
 {  
@@ -18,7 +13,6 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
         {
             public int Id  { get; set; }
             public GetProjectByStatusQuery(StatusType status) => Id = status.Id;
-
             public GetProjectByStatusQuery(int id) => Id = id;
         }
 
@@ -37,8 +31,11 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
 
             public async Task<Result<ProjectDTO>> Handle(GetProjectByStatusQuery request, CancellationToken cancellationToken)
             {
-                var status =  await _statusTypeService.GetStatusTypeByIdAsync(request.Id) ?? throw new StatusTypeNotFoundException();
-                var proj   =  await _projectService.GetProjectsByStatusAsync(status) ?? throw new ProjectNotFoundException($"Projects with status = {status.StatusName} doesnt exists ");
+                var status =  await _statusTypeService.GetStatusTypeByIdAsync(request.Id)
+                              ?? throw new StatusTypeNotFoundException();
+                var proj   =  await _projectService.GetProjectsByStatusAsync(status) 
+                              ?? throw new ProjectNotFoundException($"Projects with status = {status.StatusName} doesnt exists ");
+
                 return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));
             }
         }

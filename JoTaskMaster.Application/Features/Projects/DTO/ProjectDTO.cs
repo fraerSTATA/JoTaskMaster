@@ -16,8 +16,6 @@ namespace JoTaskMaster.Application.Features.Projects.DTO
 
         public int ProjectModelId { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
         public int StatusId { get; set; }
 
         public string Description { get; set; } = null!;

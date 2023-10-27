@@ -1,12 +1,7 @@
 ﻿using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
-using JoTaskMaster.Persistence.RelationalDB.DB;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -50,37 +45,38 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public Company? GetCompanyById(int id)
         {
-            return _context.Companies.Where
-                (c => c.Id == id).FirstOrDefault();
+            return _context.Companies
+                   .Where(c => c.Id == id)
+                   .FirstOrDefault();
                 
         }
 
         public async Task<Company?> GetCompanyByIdAsync(int id)
         {   
-            return await _context.Companies.Where
-                (c => c.Id == id).FirstOrDefaultAsync();
+            return await _context.Companies
+                         .Where(c => c.Id == id)
+                         .FirstOrDefaultAsync();
         }
 
         public Company? GetCompanyByName(string name)
         {
-            return _context.Companies
-                .Where(c => c.CompanyName == name)
-                .FirstOrDefault();
+            return   _context.Companies
+                     .Where(c => c.CompanyName == name)
+                     .FirstOrDefault();
         }
 
         public async Task<Company?> GetCompanyByNameAsync(string name)
         {
-                 return  await _context.Companies
-                .Where(c => c.CompanyName == name)
-                .FirstOrDefaultAsync();
+             return  await _context.Companies
+                     .Where(c => c.CompanyName == name)
+                     .FirstOrDefaultAsync();
         }
 
         public Company? GetCompanyByUser(User user)
         {
-            return
-             _context.Companies
-             .Where(c => c.Id == user.UserCompanyId)
-             .FirstOrDefault();
+            return _context.Companies
+                   .Where(c => c.Id == user.UserCompanyId)
+                   .FirstOrDefault();
         }
 
         public async Task<Company?> GetCompanyByUserAsync(User user)

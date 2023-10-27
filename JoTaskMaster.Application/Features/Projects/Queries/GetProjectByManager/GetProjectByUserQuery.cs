@@ -6,11 +6,6 @@ using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByManager
 {
@@ -32,14 +27,16 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByManager
         {
             _mapper = mapper;
             _projectService = projectService;
-            _userService = userService;
-            
+            _userService = userService;            
         }
 
         public async Task<Result<ProjectDTO>> Handle(GetProjectByUserQuery request, CancellationToken cancellationToken)
         {
-            var user = _userService.GetUserById(request.Id) ?? throw new UserNotFoundException();
-            var proj =  await _projectService.GetProjectByUserAsync(user) ?? throw new ProjectNotFoundException($"User with id ={request.Id} not found");
+            var user =  await _userService.GetUserByIdAsync(request.Id)
+                        ?? throw new UserNotFoundException();
+            var proj =  await _projectService.GetProjectByUserAsync(user)
+                        ?? throw new ProjectNotFoundException($"User with id ={request.Id} not found");
+
             return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));
         }
     }

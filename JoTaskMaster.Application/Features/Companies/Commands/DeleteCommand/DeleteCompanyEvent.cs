@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JoTaskMaster.Domain;
+using JoTaskMaster.Domain.Entities;
 
 namespace JoTaskMaster.Application.Features.Companies.Commands.DeleteCommand
 {
-    internal class DeleteCompanyEvent
+    public class DeleteCompanyEvent : BaseEvent
     {
+        public Company Company { get; set; }
+        public DeleteCompanyEvent(Company company) => Company = company;
     }
 }

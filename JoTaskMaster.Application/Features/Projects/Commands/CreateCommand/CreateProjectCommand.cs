@@ -5,18 +5,11 @@ using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Projects.Commands.CreateCommand
 {
      public record CreateProjectCommand : IRequest<Result<int>>, IMapFrom<Project>
     {
-
         public string ProjectName { get; set; } = null!;
 
         public int ProjectModelId { get; set; }

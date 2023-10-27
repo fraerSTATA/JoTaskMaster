@@ -26,7 +26,8 @@ namespace JoTaskMaster.Infrastructure.Services.Extenstions
                 .AddTransient<ICompanyService, CompanyService>()
                 .AddTransient<IProjectService, ProjectService>()
                 .AddTransient<IStatusTypeService, StatusTypeService>()
-                .AddTransient<ILifecycleMethodService, LifecycleMethodService>();
+                .AddTransient<ILifecycleMethodService, LifecycleMethodService>()
+                .AddTransient<IProjectTaskService, ProjectTaskService>();
 
 
 

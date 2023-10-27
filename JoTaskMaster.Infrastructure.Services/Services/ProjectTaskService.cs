@@ -1,12 +1,8 @@
-﻿using Azure.Core;
+﻿
 using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -60,52 +56,52 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public ProjectTask? GetProjectTaskById(int id)
         {
             return _context.ProjectTasks
-                 .Where(p => p.Id == id)
-                 .FirstOrDefault();
+                   .Where(p => p.Id == id)
+                   .FirstOrDefault();
         }
 
         public async Task<ProjectTask?> GetProjectTaskByIdAsync(int id)
         {
             return  await _context.ProjectTasks
-               .Where(p => p.Id == id)
-               .FirstOrDefaultAsync();
+                   .Where(p => p.Id == id)
+                   .FirstOrDefaultAsync();
         }
 
         public ProjectTask? GetProjectTaskBySubTask(ProjectTask SubTask)
         {
             return _context.ProjectTasks
-                .Where(p => p.Id == SubTask.Id)
-                .FirstOrDefault();
+                   .Where(p => p.Id == SubTask.Id)
+                   .FirstOrDefault();
         }
 
         public async Task<ProjectTask?> GetProjectTaskBySubTaskAsync(ProjectTask SubTask)
         {
-#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+
             return await _context.ProjectTasks
-                .Where(p => p.Id == SubTask.Id)
-                .FirstOrDefaultAsync();
-#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+                         .Where(p => p.Id == SubTask.Id)
+                         .FirstOrDefaultAsync();
+
         }
 
         public ProjectTask? GetProjectTaskByTaskRepsonce(TaskResponse taskResponse)
         {
             return  _context.ProjectTasks
-               .Where(p => p.Id == taskResponse.TaskId)
-               .FirstOrDefault();
+                    .Where(p => p.Id == taskResponse.TaskId)
+                    .FirstOrDefault();
         }
 
         public async Task<ProjectTask?> GetProjectTaskByTaskRepsonceAsync(TaskResponse taskResponse)
         {
             return await _context.ProjectTasks
-               .Where(p => p.Id == taskResponse.TaskId)
-               .FirstOrDefaultAsync();
+                  .Where(p => p.Id == taskResponse.TaskId)
+                  .FirstOrDefaultAsync();
         }
 
         public List<ProjectTask>? GetProjectTasksByProject(Project project)
         {
             return _context.ProjectTasks
-               .Where(p => p.Id == project.Id)
-               .ToList();
+                   .Where(p => p.Id == project.Id)
+                   .ToList();
         }
 
         public async Task<List<ProjectTask>?> GetProjectTasksByProjectAsync(Project project)
@@ -118,29 +114,29 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public List<ProjectTask>? GetProjectTasksByStatus(StatusType status)
         {
             return _context.ProjectTasks
-               .Where(p => p.TaskStatusId == status.Id)
-               .ToList();
+                   .Where(p => p.TaskStatusId == status.Id)
+                   .ToList();
         }
 
         public async Task<List<ProjectTask>?> GetProjectTasksByStatusAsync(StatusType status)
         {
             return await _context.ProjectTasks
-              .Where(p => p.TaskStatusId == status.Id)
-              .ToListAsync();
+                         .Where(p => p.TaskStatusId == status.Id)
+                         .ToListAsync();
         }
 
         public List<ProjectTask>? GetProjectTasksByUser(User user)
         {
             return _context.ProjectTasks
-                .Where(p => p.TaskManagerId == user.Id)
-                .ToList();
+                   .Where(p => p.TaskManagerId == user.Id)
+                   .ToList();
         }
 
         public async Task<List<ProjectTask>?> GetProjectTasksByUserAsync(User user)
         {
             return await _context.ProjectTasks
-              .Where(p => p.TaskManagerId == user.Id)
-              .ToListAsync();
+                         .Where(p => p.TaskManagerId == user.Id)
+                         .ToListAsync();
         }
 
         public void UpdateProjectTask(ProjectTask projectTask)

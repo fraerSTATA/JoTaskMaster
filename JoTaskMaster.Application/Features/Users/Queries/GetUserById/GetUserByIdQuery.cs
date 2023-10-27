@@ -3,11 +3,6 @@ using JoTaskMaster.Application.Exceptions.NotFound;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Users.Queries.GetUserById
 {
@@ -33,15 +28,11 @@ namespace JoTaskMaster.Application.Features.Users.Queries.GetUserById
 
         public async Task<Result<UserDTO>> Handle(GetUserByIdQuery query, CancellationToken cancellationToken)
         {
-            var user =  await _userService.GetUserByIdAsync(query.Id);           
-            if (user != null)
-            {
-                return await Result<UserDTO>.SuccessAsync(_mapper.Map<UserDTO>(user));
-            }
-            else
-            {
-                throw new UserNotFoundException($"User with id = {query.Id} Not Found");
-            }
+            var user =  await _userService.GetUserByIdAsync(query.Id)         
+                              ?? throw new UserNotFoundException($"User with id = {query.Id} Not Found");
+
+            return await Result<UserDTO>.SuccessAsync(_mapper.Map<UserDTO>(user));
+            
         }
 
      

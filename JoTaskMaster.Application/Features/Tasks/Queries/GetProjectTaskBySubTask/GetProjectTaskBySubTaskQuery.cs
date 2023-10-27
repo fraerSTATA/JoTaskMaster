@@ -6,18 +6,12 @@ using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTaskBySubTask
 {
     public record GetProjectTaskBySubTaskQuery : IRequest<Result<TaskDTO>> 
     {
         public int Id { get; set; }
-
         public GetProjectTaskBySubTaskQuery(ProjectTask pt) => Id = pt.Id;
         public GetProjectTaskBySubTaskQuery(int id) => Id = id;
     }
@@ -35,7 +29,7 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTaskBySubTas
         public async Task<Result<TaskDTO>> Handle(GetProjectTaskBySubTaskQuery request, CancellationToken cancellationToken)
         {
             var subT = await _projectTaskService.GetProjectTaskByIdAsync(request.Id)
-                ?? throw new ProjectTaskNotFoundException("SubTask not found");
+                             ?? throw new ProjectTaskNotFoundException("SubTask not found");
             if(subT.SubTaskId == null)
             {
                 throw new BadRequestException("This is not subTask");

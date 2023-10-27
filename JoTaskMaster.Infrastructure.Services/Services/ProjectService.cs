@@ -1,12 +1,7 @@
 ﻿using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
-using JoTaskMaster.Persistence.RelationalDB.DB;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {

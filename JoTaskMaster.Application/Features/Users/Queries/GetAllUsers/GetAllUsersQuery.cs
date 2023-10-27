@@ -1,24 +1,13 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using JoTaskMaster.Application.Exceptions.RequestExceptions;
+using JoTaskMaster.Application.Exceptions.NotFound;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JoTaskMaster.Application.Features.Users.Queries.GetAllUsers
 {
-    public record GetAllUsersQuery : IRequest<Result<List<GetAllUsersDTO>>> 
-    {
-       
-    
-    }
-
+    public record GetAllUsersQuery : IRequest<Result<List<GetAllUsersDTO>>> { }  
     internal class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, Result<List<GetAllUsersDTO>>>
     {
         private readonly IMapper _mapper;
@@ -31,9 +20,10 @@ namespace JoTaskMaster.Application.Features.Users.Queries.GetAllUsers
         }
         public async Task<Result<List<GetAllUsersDTO>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-              var users = await _userService.GetAllUsersAsync();
+            var users = await _userService.GetAllUsersAsync()
+                              ?? throw new UserNotFoundException();
 
-              return await Result<List<GetAllUsersDTO>>.SuccessAsync(_mapper.Map<List<GetAllUsersDTO>>(users));
+            return await Result<List<GetAllUsersDTO>>.SuccessAsync(_mapper.Map<List<GetAllUsersDTO>>(users));
 
         }
     }

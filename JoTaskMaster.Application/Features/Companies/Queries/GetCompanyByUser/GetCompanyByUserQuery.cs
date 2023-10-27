@@ -1,16 +1,11 @@
 ﻿using AutoMapper;
-using JoTaskMaster.Application.Exceptions.RequestExceptions;
+using JoTaskMaster.Application.Exceptions.NotFound;
 using JoTaskMaster.Application.Features.Companies.DTO;
 using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Companies.Queries.GetCompanyByUser
 {
@@ -20,7 +15,7 @@ namespace JoTaskMaster.Application.Features.Companies.Queries.GetCompanyByUser
         public GetCompanyByUserQuery(int id) => Id = id;
         public GetCompanyByUserQuery(User u) => Id = u.Id;
     }
-    internal class GetCompanyByUserQueryHandler : IRequestHandler<GetCompanyByUserQuery, Result<CompanyDTO>
+    internal class GetCompanyByUserQueryHandler : IRequestHandler<GetCompanyByUserQuery, Result<CompanyDTO>>
     {
         public IUserService _userService;
         public ICompanyService _companyService;
@@ -34,7 +29,9 @@ namespace JoTaskMaster.Application.Features.Companies.Queries.GetCompanyByUser
         }
         public async Task<Result<CompanyDTO>> Handle(GetCompanyByUserQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userService.GetUserByIdAsync(request.Id) ?? throw new BadRequestException();
+            var user = await _userService.GetUserByIdAsync(request.Id)
+                             ?? throw new UserNotFoundException();
+
             var company = await _companyService.GetCompanyByUserAsync(user);
             return await Result<CompanyDTO>.SuccessAsync(_mapper.Map<CompanyDTO>(company));
         }

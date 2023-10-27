@@ -1,33 +1,28 @@
 ﻿using JoTaskMaster.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using JoTaskMaster.Application.Common.Mapping;
 using JoTaskMaster.Shared;
-using JoTaskMaster.Infrastructure.Services;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
-using Microsoft.Identity.Client;
 using JoTaskMaster.Application.Interfaces.Services;
-using JoTaskMaster.Application.Exceptions.RequestExceptions;
+using JoTaskMaster.Application.Exceptions.CommandExceptions.CreateCommandException;
 
 namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
 {
     public record CreateUserCommand : IRequest<Result<int>>, IMapFrom<User>
     {
+        public string Email { get; set; } = null!;
+
+        public string UserName { get; set; } = null!;
 
         public string UserSurname { get; set; } = null!;
-        public string UserName { get; set; } = null!;
+
+        public string Nickname { get; set; } = null!;
+
         public string Password { get; set; } = null!;
 
         public int UserCompanyId { get; set; }
 
         public int UserRoleId { get; set; }
-
-        public DateTime RegistryDate { get; set; }
 
     }
 
@@ -41,19 +36,22 @@ namespace JoTaskMaster.Application.Features.Users.Commands.CreateCommand
             _userService = userService;
             _securityService = securityService;
         }
-
-
-
         public async Task<Result<int>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+            if(_userService.GetUserByEmail(request.Email) != null)
+            {
+                throw new AlreadyExistsException("User with this email has already exists!");
+            }
             var user = new User
             {
+                Nickname = request.Nickname,
+                Email = request.Email,
                 UserName = request.UserName,
                 Password = _securityService.Hashing(request.Password),
                 UserSurname = request.UserSurname,
                 UserCompanyId = request.UserCompanyId,
                 UserRoleId = request.UserRoleId,
-                RegistryDate = request.RegistryDate,
+                RegistryDate = DateTime.Now,
                 CreatedDate = DateTime.Now
             };
 

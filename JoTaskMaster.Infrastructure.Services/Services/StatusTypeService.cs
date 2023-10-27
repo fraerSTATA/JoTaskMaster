@@ -1,12 +1,7 @@
 ﻿using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
-using JoTaskMaster.Persistence.RelationalDB.DB;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -29,27 +24,27 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public void DeleteStatusType(int id)
         {
-            _context.StatusTypes.Where(s => s.Id == id).ExecuteDelete();
+                _context.StatusTypes
+                .Where(s => s.Id == id)
+                .ExecuteDelete();
         }
 
         public async Task<int> DeleteStatusTypeAsync(int id)
         {
-           return await _context.StatusTypes.Where(s => s.Id == id).ExecuteDeleteAsync();
+           return await _context.StatusTypes
+                        .Where(s => s.Id == id)
+                        .ExecuteDeleteAsync();
         }
 
-        public List<StatusType>? GetAllStatusTypes()
-        {
-            return _context.StatusTypes.ToList();
-        }
-
-        public async Task<List<StatusType>?> GetAllStatusTypesAsync()
-        {
-            return await _context.StatusTypes.ToListAsync();
-        }
+        public List<StatusType>? GetAllStatusTypes() => _context.StatusTypes.ToList();
+        
+        public async Task<List<StatusType>?> GetAllStatusTypesAsync() => await _context.StatusTypes.ToListAsync();       
 
         public StatusType? GetStatusTypeById(int id)
         {
-            return _context.StatusTypes.Where(s => s.Id == id).FirstOrDefault();
+            return _context.StatusTypes
+                   .Where(s => s.Id == id)
+                   .FirstOrDefault();
         }
 
         public async Task<StatusType?> GetStatusTypeByIdAsync(int id)
@@ -67,16 +62,16 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public async Task<List<StatusType>?> GetStatusTypeByNameAsync(string name)
         {
             return await _context.StatusTypes
-                .Where(s => s.StatusName == name)
-                .ToListAsync();
+                         .Where(s => s.StatusName == name)
+                         .ToListAsync();
         }
 
         public StatusType? GetStatusTypeByProject(Project project)
         {
             return
-            _context.StatusTypes
-            .Where(c => c.Id == project.StatusId)
-            .FirstOrDefault();
+                 _context.StatusTypes
+                 .Where(c => c.Id == project.StatusId)
+                 .FirstOrDefault();
         }
 
         public async Task<StatusType?> GetStatusTypeByProjectAsync(Project project)

@@ -1,12 +1,7 @@
 ﻿using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
-using JoTaskMaster.Persistence.RelationalDB.DB;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -31,17 +26,19 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public void DeleteLifecycleMethod(int id)
         {
             _context.LifecycleMethods
-            .Where(l => l.Id == id)
-            .ExecuteDelete();
+                    .Where(l => l.Id == id)
+                    .ExecuteDelete();
             _context.SaveChanges();
         }
 
         public async Task<int> DeleteLifecycleMethodAsync(int id)
         {
            await _context.LifecycleMethods
-            .Where(l => l.Id == id)
-            .ExecuteDeleteAsync();
-             return  await _context.SaveChangesAsync();
+                         .Where(l => l.Id == id)
+                         .ExecuteDeleteAsync();
+
+           return  await _context
+                         .SaveChangesAsync();
         }
 
         public List<LifecycleMethod>? GetAllLifecycleMethods()

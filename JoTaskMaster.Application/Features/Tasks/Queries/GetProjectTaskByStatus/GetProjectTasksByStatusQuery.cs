@@ -33,10 +33,9 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTaskByStatus
         public async Task<Result<List<TaskDTO>>> Handle(GetProjectTasksByStatusQuery request, CancellationToken cancellationToken)
         {
             var statusType = await _statusTypeService.GetStatusTypeByIdAsync(request.Id)
-                ?? throw new StatusTypeNotFoundException();
-
-            var projTask = await _projectTaskService.GetProjectTasksByStatusAsync(statusType)
-                ?? throw new ProjectTaskNotFoundException($"Project task with status = {statusType.StatusName} Not Found! ");
+                                   ?? throw new StatusTypeNotFoundException();
+            var projTask   = await _projectTaskService.GetProjectTasksByStatusAsync(statusType)
+                                   ?? throw new ProjectTaskNotFoundException($"Project task with status = {statusType.StatusName} Not Found! ");
 
             return await Result<List<TaskDTO>>.SuccessAsync(_mapper.Map<List<TaskDTO>>(projTask));
         }

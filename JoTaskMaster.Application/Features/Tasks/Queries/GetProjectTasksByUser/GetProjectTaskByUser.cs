@@ -11,9 +11,9 @@ using MediatR;
 
 namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTasksByUser
 {
-    internal class GetProjectTaskByUser : IRequest<Result<List<TaskDTO>>>
+    public record GetProjectTaskByUser : IRequest<Result<List<TaskDTO>>>
     {
-         {
+         
         public int Id { get; set; }
 
         public GetProjectTaskByUser(User user) => Id = user.Id;
@@ -33,15 +33,15 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTasksByUser
         }
         public async Task<Result<List<TaskDTO>>> Handle(GetProjectTaskByProjectQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userService.GetUserByIdAsync(request.Id)
-                ?? throw new ProjectNotFoundException($"User with id = {request.Id} not found");
-
+            var user =  await _userService.GetUserByIdAsync(request.Id)
+                              ?? throw new ProjectNotFoundException($"User with id = {request.Id} not found");
             var projT = await _projectTaskService.GetProjectTasksByUserAsync(user)
-                ?? throw new ProjectTaskNotFoundException($"Project task was maden by user with id = {request.Id} not found");
+                              ?? throw new ProjectTaskNotFoundException($"Project task was maden by user with id = {request.Id} not found");
+
             return await Result<List<TaskDTO>>.SuccessAsync(_mapper.Map<List<TaskDTO>>(projT));
         }
 
 
     }
 }
-}
+

@@ -18,7 +18,6 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTaskById
     {
         public int Id { get; set; }
         public GetProjectTaskByIdQuery(int id) => Id = id;
-
         public GetProjectTaskByIdQuery(ProjectTask task) => Id = task.Id;
     }
 
@@ -34,7 +33,8 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTaskById
         public async Task<Result<TaskDTO>> Handle(GetProjectTaskByIdQuery request, CancellationToken cancellationToken)
         {
             var tasks = await _projectTaskService.GetProjectTaskByIdAsync(request.Id)
-                ?? throw new ProjectTaskNotFoundException($"ProjectTask with id = {request.Id} not found!");
+                              ?? throw new ProjectTaskNotFoundException($"ProjectTask with id = {request.Id} not found!");
+
             return await Result<TaskDTO>.SuccessAsync(_mapper.Map<TaskDTO>(tasks));
         }
 

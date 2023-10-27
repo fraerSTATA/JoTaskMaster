@@ -6,18 +6,12 @@ using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Shared;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Companies.Queries
 {
-    public record GetCompanyByIdQuery : IRequest<Result<CompanyDTO>>, IMapFrom<Company>
+    public record GetCompanyByIdQuery : IRequest<Result<CompanyDTO>>
     {
         public int Id { get; set; }
-
         public GetCompanyByIdQuery(int id) => Id = id;
     }
 
@@ -32,11 +26,9 @@ namespace JoTaskMaster.Application.Features.Companies.Queries
         }
         public async Task<Result<CompanyDTO>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
         {
-            var company = await _companyService.GetCompanyByIdAsync(request.Id);
-            if(company == null)
-            {
-                throw new CompanyNotFoundException($"Company with id = {request.Id} NOT FOUND!");
-            }
+            var company = await _companyService.GetCompanyByIdAsync(request.Id)
+                                ?? throw new CompanyNotFoundException($"Company with id = {request.Id} NOT FOUND!");
+
             return await Result<CompanyDTO>.SuccessAsync(_mapper.Map<CompanyDTO>(company));
         }
     }

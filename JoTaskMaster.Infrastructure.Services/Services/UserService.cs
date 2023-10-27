@@ -1,13 +1,8 @@
 ﻿using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
-using JoTaskMaster.Application.Interfaces;
-using JoTaskMaster.Persistence.RelationalDB.DB;
+using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -36,16 +31,16 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public void DeleteUser(int id)
         {
             _context.Users
-                .Where(u => u.Id == id)
-                .ExecuteDelete();
-             _context.SaveChanges();
+                    .Where(u => u.Id == id)
+                    .ExecuteDelete();
+            _context.SaveChanges();
         }
 
         public async Task<int> DeleteUserAsync(int id)
         {
              await _context.Users
-                .Where(u => u.Id == id)
-                .ExecuteDeleteAsync();
+                   .Where(u => u.Id == id)
+                   .ExecuteDeleteAsync();
              return  await _context.SaveChangesAsync();
         }
 
@@ -53,7 +48,20 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
 
         public async Task<IList<User>>? GetAllUsersAsync() => await _context.Users.ToListAsync();
-        
+
+        public User? GetUserByEmail(string email)
+        {
+           return   _context.Users
+                    .Where(u => u.Email == email)
+                    .FirstOrDefault();
+        }
+
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users
+                         .Where(u => u.Email == email)
+                         .FirstOrDefaultAsync();
+        }
 
         public User? GetUserById(int id) => _context.Users.FirstOrDefault(u => u.Id == id);
 
