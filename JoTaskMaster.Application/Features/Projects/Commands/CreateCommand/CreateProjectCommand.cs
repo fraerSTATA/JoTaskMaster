@@ -59,7 +59,6 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.CreateCommand
                 StatusId = request.StatusId,
                 Description = request.Description,
                 UserManagerId = request.UserManagerId,
-                CreationDate = DateTime.Now,
                 CreatedDate = DateTime.Now
             };
             _projectService.CreateProject(proj);

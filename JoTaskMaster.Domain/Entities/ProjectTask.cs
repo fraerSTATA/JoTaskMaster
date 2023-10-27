@@ -19,8 +19,6 @@ public partial class ProjectTask : BaseAuditableEntity
 
     public int? SubTaskId { get; set; }
 
-    public int TaskPriorityId { get; set; }
-
     public virtual ICollection<ProjectTask> InverseSubTask { get; set; } = new List<ProjectTask>();
 
     public virtual Project ProjectTaskNavigation { get; set; } = null!;

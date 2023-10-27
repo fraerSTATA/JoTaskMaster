@@ -1,4 +1,4 @@
-﻿using JoTaskMaster.Persistence.RelationalDB.DB;
+﻿using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Features.Tasks.Commands.UpdateCommand
 {
-    internal class UpdateTaskCommand
+    public class UpdateTaskCommand
     {
     }
 }

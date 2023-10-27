@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using JoTaskMaster.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace JoTaskMaster.Domain.Entities;
+namespace JoTaskMaster.Persistence.RelationalDB;
 
 public partial class JoTaskMasterDbContext : DbContext
 {
@@ -142,7 +143,6 @@ public partial class JoTaskMasterDbContext : DbContext
             entity.Property(e => e.TaskDate).HasColumnType("date");
             entity.Property(e => e.TaskDescription).IsUnicode(false);
             entity.Property(e => e.TaskManagerId).HasColumnName("TaskManagerID");
-            entity.Property(e => e.TaskPriorityId).HasColumnName("TaskPriorityID");
             entity.Property(e => e.TaskStatusId).HasColumnName("TaskStatusID");
             entity.Property(e => e.TastEndDate).HasColumnType("date");
 

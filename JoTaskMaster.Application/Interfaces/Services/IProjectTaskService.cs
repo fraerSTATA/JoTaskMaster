@@ -29,10 +29,11 @@ namespace JoTaskMaster.Application.Interfaces.Services
         public List<ProjectTask>? GetProjectTasksByUser(User user);
         public Task<List<ProjectTask>?> GetProjectTasksByUserAsync(User user);
         public List<ProjectTask>? GetProjectTasksByStatus(StatusType status);
-        public Task<List<ProjectTask>>? GetProjectTasksByStatusAsync(StatusType status);
-
-        public 
-
+        public Task<List<ProjectTask>?> GetProjectTasksByStatusAsync(StatusType status);
+        public ProjectTask? GetProjectTaskByTaskRepsonce(TaskResponse taskResponse);
+        public Task<ProjectTask?> GetProjectTaskByTaskRepsonceAsync(TaskResponse taskResponse);
+        public ProjectTask? GetProjectTaskBySubTask(ProjectTask SubTask);
+        public Task<ProjectTask?> GetProjectTaskBySubTaskAsync(ProjectTask SubTask);
 
 
         #endregion
