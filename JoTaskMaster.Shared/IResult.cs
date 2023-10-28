@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace JoTaskMaster.Shared
 {
-   public interface IResult <T>
+   public interface IResult 
     {
         List<string> Messages { get; set; }
 
         bool Succeeded { get; set; }
-
-        T Data { get; set; }
 
         //List<ValidationResult> ValidationErrors { get; set; }
 

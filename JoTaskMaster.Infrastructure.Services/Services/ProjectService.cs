@@ -42,10 +42,22 @@ namespace JoTaskMaster.Infrastructure.Services.Services
            return await _context.SaveChangesAsync();
         }
 
-        public List<Project>? GetAllProjects() => _context.Projects.ToList();
+        public List<Project>? GetAllProjects()
+        {
+            if ( _context.Projects.Any())
+                return _context.Projects.ToList();
+            else
+                return null;
+        }
 
 
-        public async Task<List<Project>?> GetAllProjectsAsync() => await _context.Projects.ToListAsync();
+        public async Task<List<Project>?> GetAllProjectsAsync()
+        {
+            if (await _context.Projects.AnyAsync())
+                return await _context.Projects.ToListAsync();
+            else
+                return null;
+        }
 
 
         public async Task<Project?> GetProjectByIdAsync(int id)
@@ -70,32 +82,56 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public List<Project>? GetProjectByUser(User user)
         {
-            return _context.Projects.Where(p => p.UserManagerId == user.Id).ToList();
+            var proj = _context.Projects.Where(p => p.UserManagerId == user.Id).ToList();
+            if (proj.Any())            
+                return proj;
+            else
+                return null;
         }
 
         public async Task<List<Project>?> GetProjectByUserAsync(User user)
         {
-            return await _context.Projects.Where(p => p.UserManagerId == user.Id).ToListAsync();
+            var proj = await _context.Projects.Where(p => p.UserManagerId == user.Id).ToListAsync();
+            if (proj.Any())
+                return proj;
+            else
+                return null;
         }
 
         public  List<Project>? GetProjectsByCompany(Company company)
         {
-            return _context.Projects.Where(p => p.UserManager.UserCompanyId == company.Id).ToList();
+            var proj = _context.Projects.Where(p => p.UserManager.UserCompanyId == company.Id).ToList();
+            if (proj.Any())
+                return proj;
+            else
+                return null;
         }
 
         public async Task<List<Project>?> GetProjectsByCompanyAsync(Company company)
         {
-            return await _context.Projects.Where(p => p.UserManager.UserCompanyId == company.Id).ToListAsync();
+            var proj = await _context.Projects.Where(p => p.UserManager.UserCompanyId == company.Id).ToListAsync();
+            if (proj.Any())
+                return proj;
+            else
+                return null;
         }
 
         public List<Project>? GetProjectsByStatus(StatusType status)
         {
-            return _context.Projects.Where(p => p.Status == status).ToList();
+            var proj = _context.Projects.Where(p => p.Status == status).ToList();
+            if (proj.Any())
+                return proj;
+            else
+                return null;
         }
 
         public async Task<List<Project>?> GetProjectsByStatusAsync(StatusType status)
         {
-            return await _context.Projects.Where(p => p.Status == status).ToListAsync();
+            var proj = await _context.Projects.Where(p => p.Status == status).ToListAsync();
+            if (proj.Any())
+                return proj;
+            else
+                return null;
         }
 
         public void UpdateProject(Project project)

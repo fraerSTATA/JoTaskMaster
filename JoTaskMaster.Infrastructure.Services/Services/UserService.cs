@@ -44,10 +44,10 @@ namespace JoTaskMaster.Infrastructure.Services.Services
              return  await _context.SaveChangesAsync();
         }
 
-        public IList<User>? GetAllUsers() => _context.Users.ToList();
+        public List<User>? GetAllUsers() => _context.Users.ToList();
 
 
-        public async Task<IList<User>>? GetAllUsersAsync() => await _context.Users.ToListAsync();
+        public async Task<List<User>?> GetAllUsersAsync() => await _context.Users.ToListAsync();
 
         public User? GetUserByEmail(string email)
         {

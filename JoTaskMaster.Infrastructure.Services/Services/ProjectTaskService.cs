@@ -3,6 +3,7 @@ using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Persistence.RelationalDB;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 namespace JoTaskMaster.Infrastructure.Services.Services
 {
@@ -45,12 +46,22 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public List<ProjectTask>? GetAllProjectTasks()
         {
-            return _context.ProjectTasks.ToList();
+            var pT = _context.ProjectTasks.ToList();
+
+            if (pT.Any())
+                return pT;
+            else
+                return null;
         }
 
         public async Task<List<ProjectTask>?> GetAllProjectTasksAsync()
         {
-            return await _context.ProjectTasks.ToListAsync();
+            var pT = await _context.ProjectTasks.ToListAsync();
+
+            if (pT.Any())
+                return pT;
+            else
+                return null;
         }
 
         public ProjectTask? GetProjectTaskById(int id)
@@ -99,44 +110,75 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public List<ProjectTask>? GetProjectTasksByProject(Project project)
         {
-            return _context.ProjectTasks
-                   .Where(p => p.Id == project.Id)
-                   .ToList();
+                var pT = _context.ProjectTasks
+                       .Where(p => p.Id == project.Id)
+                       .ToList();
+
+                if (pT.Any())
+                    return pT;
+                else
+                    return null;
         }
 
         public async Task<List<ProjectTask>?> GetProjectTasksByProjectAsync(Project project)
         {
-            return await _context.ProjectTasks
-              .Where(p => p.Id == project.Id)
-              .ToListAsync();
+                var pT = await _context.ProjectTasks
+                               .Where(p => p.Id == project.Id)
+                               .ToListAsync();
+
+                if (pT.Any())
+                    return pT;
+                else
+                    return null;
         }
 
         public List<ProjectTask>? GetProjectTasksByStatus(StatusType status)
         {
-            return _context.ProjectTasks
+            var pT = _context.ProjectTasks
                    .Where(p => p.TaskStatusId == status.Id)
                    .ToList();
+
+            if (pT.Any())
+                return pT;
+            else
+                return null;
         }
+    
 
         public async Task<List<ProjectTask>?> GetProjectTasksByStatusAsync(StatusType status)
         {
-            return await _context.ProjectTasks
+                 var pT = await _context.ProjectTasks
                          .Where(p => p.TaskStatusId == status.Id)
                          .ToListAsync();
+
+
+                 if (pT.Any())
+                     return pT;
+                 else
+                     return null;
         }
 
         public List<ProjectTask>? GetProjectTasksByUser(User user)
         {
-            return _context.ProjectTasks
+            var pT = _context.ProjectTasks
                    .Where(p => p.TaskManagerId == user.Id)
                    .ToList();
+
+            if (pT.Any())
+                return pT;
+            else
+                return null;
         }
 
         public async Task<List<ProjectTask>?> GetProjectTasksByUserAsync(User user)
         {
-            return await _context.ProjectTasks
+            var pT = await _context.ProjectTasks
                          .Where(p => p.TaskManagerId == user.Id)
                          .ToListAsync();
+            if (pT.Any())
+                return pT;
+            else
+                return null;
         }
 
         public void UpdateProjectTask(ProjectTask projectTask)

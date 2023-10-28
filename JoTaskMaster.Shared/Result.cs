@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoTaskMaster.Shared 
 { 
- public class Result<T> : IResult<T>
+ public class Result<T> : IResult
 {
     public List<string> Messages { get; set; } = new List<string>();
 

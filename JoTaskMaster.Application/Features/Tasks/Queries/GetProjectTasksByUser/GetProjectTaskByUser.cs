@@ -11,16 +11,16 @@ using MediatR;
 
 namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTasksByUser
 {
-    public record GetProjectTaskByUser : IRequest<Result<List<TaskDTO>>>
+    public record GetProjectTaskByUserQuery : IRequest<Result<List<TaskDTO>>>
     {
          
         public int Id { get; set; }
 
-        public GetProjectTaskByUser(User user) => Id = user.Id;
-        public GetProjectTaskByUser(int id) => Id = id;
+        public GetProjectTaskByUserQuery(User user) => Id = user.Id;
+        public GetProjectTaskByUserQuery(int id) => Id = id;
     }
 
-    internal class GetProjectTaskByUserQueryHandler : IRequestHandler<GetProjectTaskByProjectQuery, Result<List<TaskDTO>>>
+    internal class GetProjectTaskByUserQueryHandler : IRequestHandler<GetProjectTaskByUserQuery, Result<List<TaskDTO>>>
     {
         private readonly IProjectTaskService _projectTaskService;
         private readonly IUserService _userService;
@@ -31,7 +31,7 @@ namespace JoTaskMaster.Application.Features.Tasks.Queries.GetProjectTasksByUser
             _mapper = mapper;
             _userService = ps;
         }
-        public async Task<Result<List<TaskDTO>>> Handle(GetProjectTaskByProjectQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<TaskDTO>>> Handle(GetProjectTaskByUserQuery request, CancellationToken cancellationToken)
         {
             var user =  await _userService.GetUserByIdAsync(request.Id)
                               ?? throw new ProjectNotFoundException($"User with id = {request.Id} not found");

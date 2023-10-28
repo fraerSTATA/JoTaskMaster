@@ -9,14 +9,14 @@ using MediatR;
 namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
 {  
     
-        public record GetProjectByStatusQuery : IRequest<Result<ProjectDTO>>
+        public record GetProjectByStatusQuery : IRequest<Result<List<ProjectDTO>>>
         {
             public int Id  { get; set; }
             public GetProjectByStatusQuery(StatusType status) => Id = status.Id;
             public GetProjectByStatusQuery(int id) => Id = id;
         }
 
-        internal class GetProjectByNameQueryHandler : IRequestHandler<GetProjectByStatusQuery, Result<ProjectDTO>>
+        internal class GetProjectByNameQueryHandler : IRequestHandler<GetProjectByStatusQuery, Result<List<ProjectDTO>>>
         {
             private readonly IProjectService _projectService;
             private readonly IMapper _mapper;
@@ -29,14 +29,14 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
                 _statusTypeService = statusTypeService;
             }
 
-            public async Task<Result<ProjectDTO>> Handle(GetProjectByStatusQuery request, CancellationToken cancellationToken)
+            public async Task<Result<List<ProjectDTO>>> Handle(GetProjectByStatusQuery request, CancellationToken cancellationToken)
             {
                 var status =  await _statusTypeService.GetStatusTypeByIdAsync(request.Id)
                               ?? throw new StatusTypeNotFoundException();
                 var proj   =  await _projectService.GetProjectsByStatusAsync(status) 
                               ?? throw new ProjectNotFoundException($"Projects with status = {status.StatusName} doesnt exists ");
 
-                return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));
+                return await Result<List<ProjectDTO>>.SuccessAsync(_mapper.Map<List<ProjectDTO>>(proj));
             }
         }
     

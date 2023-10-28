@@ -18,8 +18,8 @@ namespace JoTaskMaster.Infrastructure.Services.Interfaces
         public User? GetUserByEmail(string email);
         public Task<User?> GetUserByIdAsync(int id);
         public User? GetUserById(int id);
-        public IList<User>? GetAllUsers();
-        public Task<IList<User>>? GetAllUsersAsync();
+        public List<User>? GetAllUsers();
+        public Task<List<User>?> GetAllUsersAsync();
 
         #endregion
 

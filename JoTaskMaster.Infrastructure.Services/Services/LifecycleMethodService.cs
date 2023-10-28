@@ -43,12 +43,22 @@ namespace JoTaskMaster.Infrastructure.Services.Services
 
         public List<LifecycleMethod>? GetAllLifecycleMethods()
         {
-            return _context.LifecycleMethods.ToList();
+            var lif = _context.LifecycleMethods.ToList();
+
+            if (lif.Any())
+                return lif;
+            else
+                return null;
         }
 
         public async Task<List<LifecycleMethod>?> GetAllLifecycleMethodsAsync()
         {
-            return  await _context.LifecycleMethods.ToListAsync();
+            var lif = await _context.LifecycleMethods.ToListAsync();
+
+            if (lif.Any())
+                return lif;
+            else
+                return null;
         }
 
         public LifecycleMethod? GetLifecycleMethodById(int id)

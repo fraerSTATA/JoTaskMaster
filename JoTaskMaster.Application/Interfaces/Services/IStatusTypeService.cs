@@ -24,8 +24,8 @@ namespace JoTaskMaster.Application.Interfaces.Services
         public Task<List<StatusType>?> GetAllStatusTypesAsync();
         public StatusType? GetStatusTypeById(int id);
         public Task<StatusType?> GetStatusTypeByIdAsync(int id);
-        public List<StatusType>? GetStatusTypeByName(string name);
-        public Task<List<StatusType>?> GetStatusTypeByNameAsync(string name);
+        public StatusType? GetStatusTypeByName(string name);
+        public Task<StatusType?> GetStatusTypeByNameAsync(string name);
         public StatusType? GetStatusTypeByProject(Project project);
         public Task<StatusType?> GetStatusTypeByProjectAsync(Project project);
         #endregion

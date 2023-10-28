@@ -39,9 +39,24 @@ namespace JoTaskMaster.Infrastructure.Services.Services
            return await _context.SaveChangesAsync();
         }
 
-        public List<Company>? GetAllCompanies() => _context.Companies.ToList();
+        public List<Company>? GetAllCompanies()
+        {
+            if (_context.Companies.Any())
+                return _context.Companies.ToList();
+            else
+                return null;
+        }
        
-        public async Task<List<Company>?> GetAllCompaniesAsync() => await _context.Companies.ToListAsync();      
+        public async Task<List<Company>?> GetAllCompaniesAsync()
+        {
+             
+            if (await _context.Companies.AnyAsync())
+                return await _context.Companies.ToListAsync();
+            else
+                return null;
+        }
+            
+                 
 
         public Company? GetCompanyById(int id)
         {

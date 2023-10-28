@@ -36,9 +36,26 @@ namespace JoTaskMaster.Infrastructure.Services.Services
                         .ExecuteDeleteAsync();
         }
 
-        public List<StatusType>? GetAllStatusTypes() => _context.StatusTypes.ToList();
-        
-        public async Task<List<StatusType>?> GetAllStatusTypesAsync() => await _context.StatusTypes.ToListAsync();       
+        public List<StatusType>? GetAllStatusTypes()
+        {
+            var st = _context.StatusTypes.ToList();
+
+            if (st.Any())
+                return st;
+            else
+                return null;
+        }
+
+        public async Task<List<StatusType>?> GetAllStatusTypesAsync()
+        {
+            var st = await _context.StatusTypes.ToListAsync();
+
+            if (st.Any())
+                return st;
+            else
+                return null;
+
+        }       
 
         public StatusType? GetStatusTypeById(int id)
         {
@@ -52,18 +69,18 @@ namespace JoTaskMaster.Infrastructure.Services.Services
             return await _context.StatusTypes.Where(s => s.Id == id).FirstOrDefaultAsync();
         }
 
-        public List<StatusType>? GetStatusTypeByName(string name)
+        public StatusType? GetStatusTypeByName(string name)
         {
             return _context.StatusTypes
                 .Where( s => s.StatusName == name)
-                .ToList();
+                .FirstOrDefault();
         }
 
-        public async Task<List<StatusType>?> GetStatusTypeByNameAsync(string name)
+        public async Task<StatusType?> GetStatusTypeByNameAsync(string name)
         {
             return await _context.StatusTypes
-                         .Where(s => s.StatusName == name)
-                         .ToListAsync();
+                .Where(s => s.StatusName == name)
+                .FirstOrDefaultAsync();
         }
 
         public StatusType? GetStatusTypeByProject(Project project)
@@ -77,9 +94,9 @@ namespace JoTaskMaster.Infrastructure.Services.Services
         public async Task<StatusType?> GetStatusTypeByProjectAsync(Project project)
         {
             return await
-           _context.StatusTypes
-           .Where(c => c.Id == project.StatusId)
-           .FirstOrDefaultAsync();
+                   _context.StatusTypes
+                   .Where(c => c.Id == project.StatusId)
+                   .FirstOrDefaultAsync();
         }
 
         public void UpdateStatusType(StatusType status)

@@ -3,6 +3,8 @@ using JoTaskMaster.Persistence.RelationalDB.Extensions;
 using JoTaskMaster.Application;
 using JoTaskMaster.Infrastructure.Services.Extenstions;
 using JoTaskMaster.Api.Middlewares;
+using JoTaskMaster.Application.Behaviors;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
