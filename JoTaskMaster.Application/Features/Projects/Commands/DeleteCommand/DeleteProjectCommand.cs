@@ -1,4 +1,5 @@
-﻿using JoTaskMaster.Application.Exceptions.RequestExceptions;
+﻿using JoTaskMaster.Application.Exceptions.NotFound;
+using JoTaskMaster.Application.Exceptions.RequestExceptions;
 using JoTaskMaster.Application.Interfaces.Services;
 using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Shared;
@@ -23,7 +24,7 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.DeleteCommand
         public async Task<Result<int>> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
             var proj = _projectService.GetProjectById(request.Id)
-                       ?? throw new BadRequestException($"Project with id = {request.Id} doesn't exist!");
+                       ?? throw new ProjectNotFoundException($"Project with id = {request.Id} doesn't exist!");
                        
              await _projectService.DeleteProjectAsync(proj.Id);
              return await Result<int>.SuccessAsync(proj.Id, "Project deleted");

@@ -1,14 +1,9 @@
 ﻿using FluentValidation;
 using JoTaskMaster.Application.Behaviors;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JoTaskMaster.Application
 {
@@ -24,13 +19,13 @@ namespace JoTaskMaster.Application
         }
 
         public static void AddAutoMapper(this IServiceCollection services) =>
-            services.AddAutoMapper(
+                services.AddAutoMapper(
                 Assembly.GetExecutingAssembly());
 
         public static void AddMediator(this IServiceCollection services) =>
                 services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(
-                    Assembly.GetExecutingAssembly()));
+                Assembly.GetExecutingAssembly()));
 
         private static void AddValidators(this IServiceCollection services)
         {

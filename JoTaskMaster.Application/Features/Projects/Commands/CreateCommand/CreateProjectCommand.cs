@@ -5,9 +5,12 @@ using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("JoTaskMaster.Tests")]
 namespace JoTaskMaster.Application.Features.Projects.Commands.CreateCommand
 {
+
      public record CreateProjectCommand : IRequest<Result<int>>, IMapFrom<Project>
     {
         public string ProjectName { get; set; } = null!;
@@ -37,10 +40,10 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.CreateCommand
  
         public async Task<Result<int>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-            if (request.ProjectName == null
+            if (string.IsNullOrWhiteSpace(request.ProjectName)
                 || _lifecycleMethodService.GetLifecycleMethodById(request.ProjectModelId) == null
                 || _statusTypeService.GetStatusTypeById(request.StatusId) == null
-                || request.Description == null
+                || string.IsNullOrWhiteSpace(request.Description) 
                 || _userService.GetUserById(request.UserManagerId) == null)             
             {
                 throw new BadRequestException("One or more request arguments was bad!");
