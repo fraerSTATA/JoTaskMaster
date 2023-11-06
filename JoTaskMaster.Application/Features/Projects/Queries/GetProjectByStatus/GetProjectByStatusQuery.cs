@@ -16,13 +16,13 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus
             public GetProjectByStatusQuery(int id) => Id = id;
         }
 
-        internal class GetProjectByNameQueryHandler : IRequestHandler<GetProjectByStatusQuery, Result<List<ProjectDTO>>>
+        internal class GetProjectByStatusQueryHandler : IRequestHandler<GetProjectByStatusQuery, Result<List<ProjectDTO>>>
         {
             private readonly IProjectService _projectService;
             private readonly IMapper _mapper;
             private readonly IStatusTypeService _statusTypeService;
 
-            public GetProjectByNameQueryHandler(IProjectService projectService, IMapper mapper, IStatusTypeService statusTypeService)
+            public GetProjectByStatusQueryHandler(IProjectService projectService, IMapper mapper, IStatusTypeService statusTypeService)
             {
                 _projectService = projectService;
                 _mapper = mapper;

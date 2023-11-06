@@ -27,7 +27,7 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectById
 
         public async Task<Result<ProjectDTO>> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
         {
-            var proj = _projectService.GetProjectById(request.Id)
+            var proj = await _projectService.GetProjectByIdAsync(request.Id)
                        ?? throw new ProjectNotFoundException();
 
             return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));

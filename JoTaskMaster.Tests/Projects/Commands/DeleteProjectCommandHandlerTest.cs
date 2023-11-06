@@ -26,14 +26,19 @@ namespace JoTaskMaster.Tests.Projects.Commands
         public async void Delete_Project_Success()
         {
             //Arrange 
+
             var proj = new Project();
-            DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(1);
+            var deleteProjectCommand = new DeleteProjectCommand(1);
             _projectServiceMock.Setup(p => p.GetProjectById(It.IsAny<int>())).Returns(proj);
             _projectServiceMock.Setup(p => p.DeleteProjectAsync(It.IsAny<int>()));
-            DeleteProjectCommandHandler DpCH = new DeleteProjectCommandHandler(_projectServiceMock.Object);
+            var DpCH = new DeleteProjectCommandHandler(_projectServiceMock.Object);
+
             //Act
+
             var result = await DpCH.Handle(deleteProjectCommand, default);
+
             //Assert
+
             Assert.True(result.Succeeded);
             Assert.Equal("Project deleted", result.Messages.First());
         }

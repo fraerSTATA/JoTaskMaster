@@ -24,7 +24,7 @@ namespace JoTaskMaster.Tests.Base
 
             context.Database.EnsureCreated();
 
-            context.Roles.Add(new Role
+           /* context.Roles.Add(new Role
             {
                 Id = 1,
                 RoleName = "user",
@@ -141,9 +141,9 @@ namespace JoTaskMaster.Tests.Base
                       ProjectTaskId = 2,
                       SubTaskId = 2
                   }
-                );
+                );*/
 
-            context.SaveChanges();
+
             return context;
 
         }

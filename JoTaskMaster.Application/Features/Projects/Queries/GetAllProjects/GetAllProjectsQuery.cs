@@ -21,7 +21,7 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetAllProjects
         }
         public async Task<Result<List<ProjectDTO>>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
         {            
-            var projects = _projectService.GetAllProjects()
+            var projects = await _projectService.GetAllProjectsAsync()
                            ?? throw new ProjectNotFoundException();
 
             return await Result<List<ProjectDTO>>.SuccessAsync(_mappeer.Map<List<ProjectDTO>>(projects));
