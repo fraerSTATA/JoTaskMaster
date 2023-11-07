@@ -5,9 +5,13 @@ using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Infrastructure.Services.Interfaces;
 using JoTaskMaster.Shared;
 using MediatR;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("JoTaskMaster.Tests")]
 namespace JoTaskMaster.Application.Features.Tasks.Commands.CreateCommand
 {
+
+    
     public record CreateSubTaskCommand : IRequest<Result<int>>, IMapFrom<ProjectTask>
     {
         public int ProjectTaskId { get; set; }
