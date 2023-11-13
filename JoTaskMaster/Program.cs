@@ -5,11 +5,13 @@ using JoTaskMaster.Infrastructure.Services.Extenstions;
 using JoTaskMaster.Api.Middlewares;
 using JoTaskMaster.Application.Behaviors;
 using MediatR;
+using JoTaskMaster.Application.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAplicationLayer();
+builder.Services.AddAplicationValidationLayer();
 builder.Services.AddInfrasctructureLayer();
 builder.Services.AddPersistanceLayer(builder.Configuration);
 builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();

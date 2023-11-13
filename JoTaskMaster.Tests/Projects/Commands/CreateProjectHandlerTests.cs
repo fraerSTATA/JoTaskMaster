@@ -56,20 +56,12 @@ namespace JoTaskMaster.Tests.Projects.Commands
                 StatusId = 1,
                 UserManagerId = 1,
             };
-            var lifecycle = new LifecycleMethod { Id = createProjectCommand.ProjectModelId };
-            var statusType = new StatusType() { Id = createProjectCommand.StatusId };
-            var user = new User() { Id = createProjectCommand.UserManagerId };
-
-            _lifecycleMethodServiceMock.Setup(x => x.GetLifecycleMethodById(It.IsAny<int>())).Returns(lifecycle);
-            _statusTypeServiceMock.Setup(x => x.GetStatusTypeById(It.IsAny<int>())).Returns(statusType);
-            _userServiceMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(user);
+           
             _projectServiceMock.Setup(p => p.CreateProjectAsync(It.IsAny<Project>()).Result);
 
             var createProjectCommandHandler = new CreateProjectCommandHandler(
-                                                  _projectServiceMock.Object,
-                                                  _lifecycleMethodServiceMock.Object,
-                                                  _statusTypeServiceMock.Object,
-                                                  _userServiceMock.Object);
+                                                  _projectServiceMock.Object
+                                                 );
             // Act
 
             var res = await createProjectCommandHandler.Handle(createProjectCommand, default);
@@ -104,16 +96,11 @@ namespace JoTaskMaster.Tests.Projects.Commands
             };
             
 
-            _lifecycleMethodServiceMock.Setup(x => x.GetLifecycleMethodById(It.IsAny<int>())).Returns(lifecycleMethod);
-            _statusTypeServiceMock.Setup(x => x.GetStatusTypeById(It.IsAny<int>())).Returns(statusType);
-            _userServiceMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(user);
             _projectServiceMock.Setup(p => p.CreateProjectAsync(It.IsAny<Project>()));
 
             var createProjectCommandHandler = new CreateProjectCommandHandler(
-                                                  _projectServiceMock.Object,
-                                                  _lifecycleMethodServiceMock.Object,
-                                                  _statusTypeServiceMock.Object,
-                                                  _userServiceMock.Object);
+                                                  _projectServiceMock.Object
+                                                 );
             // Act
 
             var ex = await Assert.ThrowsAsync<BadRequestException>(() => createProjectCommandHandler.Handle(createProjectCommand, default));

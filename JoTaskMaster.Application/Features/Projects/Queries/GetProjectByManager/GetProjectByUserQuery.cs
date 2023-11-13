@@ -23,17 +23,17 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByManager
         private readonly IMapper _mapper;
         private readonly IProjectService _projectService;
 
-        public GetProjectByUserQueryHandler(IMapper mapper, IProjectService projectService, IUserService userService )
+        public GetProjectByUserQueryHandler(IMapper mapper, IProjectService projectService, IUserService userService)
         {
             _mapper = mapper;
             _projectService = projectService;
-            _userService = userService;            
+            _userService = userService;
         }
 
         public async Task<Result<List<ProjectDTO>>> Handle(GetProjectByUserQuery request, CancellationToken cancellationToken)
         {
-           var user =  await _userService.GetUserByIdAsync(request.Id)
-                        ?? throw new UserNotFoundException();
+            var user = await _userService.GetUserByIdAsync(request.Id)
+                         ?? throw new UserNotFoundException();
             var proj = await _projectService.GetProjectByUserAsync(user)
                         ?? throw new ProjectNotFoundException($"Project with user id ={request.Id} not found");
 

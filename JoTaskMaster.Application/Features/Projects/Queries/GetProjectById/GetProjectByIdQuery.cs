@@ -11,10 +11,10 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectById
     {
         public int Id { get; set; }
         public GetProjectByIdQuery(int id) => Id = id;
-       
+
     }
 
-    public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, Result<ProjectDTO>> 
+    public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, Result<ProjectDTO>>
     {
         private readonly IMapper _mapper;
         private readonly IProjectService _projectService;

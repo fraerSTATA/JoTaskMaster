@@ -10,7 +10,7 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.DeleteCommand
     public record DeleteProjectCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
-        public DeleteProjectCommand (int id) => Id = id;
+        public DeleteProjectCommand(int id) => Id = id;
         public DeleteProjectCommand(Project project) => Id = project.Id;
     }
 
@@ -25,9 +25,9 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.DeleteCommand
         {
             var proj = _projectService.GetProjectById(request.Id)
                        ?? throw new ProjectNotFoundException($"Project with id = {request.Id} doesn't exist!");
-                       
-             await _projectService.DeleteProjectAsync(proj.Id);
-             return await Result<int>.SuccessAsync(proj.Id, "Project deleted");
+
+            await _projectService.DeleteProjectAsync(proj.Id);
+            return await Result<int>.SuccessAsync(proj.Id, "Project deleted");
 
         }
     }

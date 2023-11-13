@@ -1,7 +1,12 @@
 ﻿using JoTaskMaster.Application.Exceptions.Base;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json;
+using FluentAssertions;
+using FluentValidation;
+using System.ComponentModel;
+using JoTaskMaster.Application.Exceptions.ValidationExceptions;
 
 namespace JoTaskMaster.Api.Middlewares
 {
@@ -29,8 +34,22 @@ namespace JoTaskMaster.Api.Middlewares
 
                 if (ex is  WorkException)
                 {
-                    WorkException workException = (WorkException)ex;
+                    var workException = (WorkException)ex;
                     await ProblemResponseAsync(workException.StatusCode, workException.ProblemDetails, context);
+                }
+                var ss = ex.GetType().ToString();
+                if(ex is ValidationsException)
+                {
+                    var valException = (ValidationsException)ex;
+                    var pb = new ProblemDetails()
+                    {
+                        Type = "Valiadation Exception",
+                        Title = "Validation Erorrs",
+                        Status = (int)HttpStatusCode.BadRequest,
+                        Detail = valException.Message,
+                        
+                    };
+                    await ProblemResponseAsync(HttpStatusCode.BadRequest, pb, context);
                 }
                 else
                 {

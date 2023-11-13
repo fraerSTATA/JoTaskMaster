@@ -9,18 +9,18 @@ using MediatR;
 namespace JoTaskMaster.Application.Features.Projects.Queries.GetAllProjects
 {
     public record GetAllProjectsQuery : IRequest<Result<List<ProjectDTO>>> { }
-    
+
     internal class GetAllProjectsQueryHandler : IRequestHandler<GetAllProjectsQuery, Result<List<ProjectDTO>>>
     {
         private readonly IProjectService _projectService;
         private readonly IMapper _mappeer;
-        public GetAllProjectsQueryHandler(IProjectService projectService, IMapper mapper) 
-        { 
-                _projectService = projectService;
-                 _mappeer = mapper;
+        public GetAllProjectsQueryHandler(IProjectService projectService, IMapper mapper)
+        {
+            _projectService = projectService;
+            _mappeer = mapper;
         }
         public async Task<Result<List<ProjectDTO>>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
-        {            
+        {
             var projects = await _projectService.GetAllProjectsAsync()
                            ?? throw new ProjectNotFoundException();
 

@@ -10,7 +10,7 @@ namespace JoTaskMaster.Application.Features.Projects.Commands.DeleteCommand
 {
     public class DeleteProjectEvent : BaseEvent
     {
-        public Project Project { get;}
+        public Project Project { get; }
         public DeleteProjectEvent(Project project) => Project = project;
     }
 }

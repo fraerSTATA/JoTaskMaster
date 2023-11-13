@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="FluentValidation" Version="11.8.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -17,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JoTaskMaster.Application.Validation\JoTaskMaster.Application.Validation.csproj" />
     <ProjectReference Include="..\JoTaskMaster.Application\JoTaskMaster.Application.csproj" />
     <ProjectReference Include="..\JoTaskMaster.Domain\JoTaskMaster.Domain.csproj" />
     <ProjectReference Include="..\JoTaskMaster.Infrastructure.Services\JoTaskMaster.Infrastructure.Services.csproj" />

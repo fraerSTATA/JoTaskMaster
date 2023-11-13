@@ -12,7 +12,7 @@ namespace JoTaskMaster.Domain
     public abstract class BaseEntity : IEntity
     {
 
-        private readonly List<BaseEvent> _domainEvents = new ();
+        private readonly List<BaseEvent> _domainEvents = new ();    
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set ; }

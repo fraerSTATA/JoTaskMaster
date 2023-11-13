@@ -29,10 +29,6 @@ namespace JoTaskMaster.Infrastructure.Services.Extenstions
                 .AddTransient<ILifecycleMethodService, LifecycleMethodService>()
                 .AddTransient<IProjectTaskService, ProjectTaskService>();
 
-
-
-
-
         }
     }
 }

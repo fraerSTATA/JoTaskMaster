@@ -10,7 +10,7 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByName
     public record GetProjectByNameQuery : IRequest<Result<ProjectDTO>>
     {
         public string Name { get; set; }
-        public GetProjectByNameQuery(string name) => Name = name; 
+        public GetProjectByNameQuery(string name) => Name = name;
     }
 
     internal class GetProjectByNameQueryHandler : IRequestHandler<GetProjectByNameQuery, Result<ProjectDTO>>
@@ -29,7 +29,7 @@ namespace JoTaskMaster.Application.Features.Projects.Queries.GetProjectByName
             var proj = await _projectService.GetProjectByNameAsync(request.Name)
                        ?? throw new ProjectNotFoundException($"Project with name = {request.Name}");
 
-            return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));  
+            return await Result<ProjectDTO>.SuccessAsync(_mapper.Map<ProjectDTO>(proj));
         }
     }
 }

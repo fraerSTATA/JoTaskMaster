@@ -51,12 +51,6 @@ namespace JoTaskMaster.Api.Controllers
         /// Get User by email query
         /// </summary>
         /// <returns>List of users</returns>
-       // [HttpGet]
-
-       // public async Task<ActionResult<Result<List<GetAllUsersDTO>>>> GetUserByEmail()
-      //  {
-            //return await _mediator.Send(new GetUserByEmailQuery));
-    //    }
         #endregion
 
         #region Post methods
