@@ -19,16 +19,12 @@ namespace JoTaskMaster.Tests.ProjectTasks.Commands
     public class CreateProjectTaskHandlerTest
     {
         private readonly Mock<IProjectTaskService> _projectTaskServiceMock;
-        private readonly Mock<IUserService> _userServiceMock;
-        private readonly Mock<IStatusTypeService> _statusTypeServiceMock;
-        private readonly Mock<IProjectService> _projectServiceMock;
+       
 
         public CreateProjectTaskHandlerTest()
         {
             _projectTaskServiceMock = new Mock<IProjectTaskService>();
-            _userServiceMock = new Mock<IUserService>();
-            _statusTypeServiceMock = new Mock<IStatusTypeService>();
-            _projectServiceMock = new Mock<IProjectService>();
+          
         }
 
         [Fact]
@@ -49,16 +45,11 @@ namespace JoTaskMaster.Tests.ProjectTasks.Commands
                 TaskManagerId = 1,
             };
 
-            _projectServiceMock.Setup(x => x.GetProjectById(It.IsAny<int>())).Returns(proj);
-            _userServiceMock.Setup(u => u.GetUserById(It.IsAny<int>())).Returns(user);
-            _statusTypeServiceMock.Setup(s => s.GetStatusTypeById(It.IsAny<int>())).Returns(status);
+          
 
             _projectTaskServiceMock.Setup(p => p.CreateProjectTask(It.IsAny<ProjectTask>()));
 
-            var createTaskCommandHandler = new CreateTaskCommandHandler(_projectTaskServiceMock.Object,
-                                                                        _userServiceMock.Object,
-                                                                        _statusTypeServiceMock.Object,
-                                                                        _projectServiceMock.Object);
+            var createTaskCommandHandler = new CreateTaskCommandHandler(_projectTaskServiceMock.Object);
 
             //Act
             var res =  await createTaskCommandHandler.Handle(command, default);
@@ -85,16 +76,11 @@ namespace JoTaskMaster.Tests.ProjectTasks.Commands
                 TaskManagerId = 1,
             };
 
-            _projectServiceMock.Setup(x => x.GetProjectById(It.IsAny<int>())).Returns(proj);
-            _userServiceMock.Setup(u => u.GetUserById(It.IsAny<int>())).Returns(user);
-            _statusTypeServiceMock.Setup(s => s.GetStatusTypeById(It.IsAny<int>())).Returns(status);
+          
 
             _projectTaskServiceMock.Setup(p => p.CreateProjectTask(It.IsAny<ProjectTask>()));
 
-            var createTaskCommandHandler = new CreateTaskCommandHandler(_projectTaskServiceMock.Object,
-                                                                        _userServiceMock.Object,
-                                                                        _statusTypeServiceMock.Object,
-                                                                        _projectServiceMock.Object);
+            var createTaskCommandHandler = new CreateTaskCommandHandler(_projectTaskServiceMock.Object);
 
             //Act
             var ex = await Assert.ThrowsAsync<BadRequestException>(() => createTaskCommandHandler.Handle(command, default));

@@ -10,8 +10,7 @@ namespace JoTaskMaster.Application.Features.Companies.Commands.DeleteCommand
     {
         public int Id { get; set; }
         public DeleteCompanyCommand(int id) => Id = id;
-        
-        public DeleteCompanyCommand(Company company) => Id = company.Id;
+
     }
 
     internal class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, Result<int>>

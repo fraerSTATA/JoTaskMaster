@@ -28,25 +28,16 @@ namespace JoTaskMaster.Application.Features.Tasks.Commands.CreateCommand
     internal class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Result<int>>
     {
         private readonly IProjectTaskService _projectTaskService;
-        private readonly IUserService _userService;
-        private readonly IStatusTypeService _statusTypeService;
-        private readonly IProjectService _projectService;
+       
 
-        public CreateTaskCommandHandler(IProjectTaskService projectTaskService, IUserService userService, IStatusTypeService statusTypeService, IProjectService projectService)
+        public CreateTaskCommandHandler(IProjectTaskService projectTaskService)
         {
             _projectTaskService = projectTaskService;
-            _userService = userService;
-            _statusTypeService = statusTypeService;
-            _projectService = projectService;
+          
         }
         public async Task<Result<int>> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            if (_projectService.GetProjectById(request.ProjectTaskId) == null
-                || _userService.GetUserById(request.TaskManagerId) == null
-                || _statusTypeService.GetStatusTypeById(request.TaskStatusId) == null)
-            {
-                throw new BadRequestException("One or more bad arguments in request!");
-            }
+        
             var projTask = new ProjectTask
             {
                 TaskStatusId = request.TaskStatusId,

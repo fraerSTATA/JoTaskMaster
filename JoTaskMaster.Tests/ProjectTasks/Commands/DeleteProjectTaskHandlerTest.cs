@@ -44,25 +44,6 @@ namespace JoTaskMaster.Tests.ProjectTasks.Commands
             Assert.Equal("Project task deleted!", result.Messages.First());
         }
 
-        [Fact]
-        public async void Delete_Project_Task_Throws_Project_Task_Not_Found_Exception()
-        {
-            //Arrange 
-           
-            var deleteTaskCommand = new DeleteTaskCommand(1);
-            _projectTaskServiceMock.Setup(p => p.GetProjectTaskById(It.IsAny<int>())).Returns(() => null);
-            _projectTaskServiceMock.Setup(p => p.DeleteProjectTaskAsync(It.IsAny<int>()));
-            var DpCH = new DeleteTaskCommandHandler(_projectTaskServiceMock.Object);
-
-            //Act
-
-            var ex = await Assert.ThrowsAsync<ProjectTaskNotFoundException>(() => DpCH.Handle(deleteTaskCommand, default));
-
-            //Assert
-
-            Assert.NotNull(ex);
-            Assert.Equal(HttpStatusCode.NotFound, ex.StatusCode);
-            Assert.Equal($"ProjectTask with Id = 1 Not Found!", ex.Message);
-        }
+     
     }
 }

@@ -98,7 +98,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <response code="200">Project Created</response>
         /// <response code="400">Bad request</response>
         [HttpPost("Create_Project")]
-        public async Task<ActionResult<Result<int>>> CreateProject([FromBody] CreateProjectCommand command, [FromServices] IValidator<CreateProjectCommand> validator)
+        public async Task<ActionResult<Result<int>>> CreateProject([FromBody] CreateProjectCommand command)
         {
            // var res = await validator.ValidateAsync(command);
 
@@ -116,12 +116,13 @@ namespace JoTaskMaster.Api.Controllers
         /// <summary>
         /// DeleteProject
         /// </summary>
-        /// <param name="CreateProjectCommand">Command which inludes require parametres</param>
+        /// <param name="DeleterojectCommand">Command which inludes require parametres</param>
         /// <response code="200">Project Deleted</response>
         /// <response code="404">Project not found</response>
         [HttpDelete("Delete_Project")]
-        public async Task<ActionResult<Result<int>>> DeleteProject(DeleteProjectCommand command)
+        public async Task<ActionResult<Result<int>>> DeleteProject( DeleteProjectCommand command)
         {
+            var b = 0;
             return await _mediator.Send(command);
         }
         #endregion

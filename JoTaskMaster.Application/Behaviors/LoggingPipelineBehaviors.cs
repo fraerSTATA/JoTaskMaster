@@ -21,8 +21,7 @@ namespace JoTaskMaster.Application.Behaviors
         {
             _logger = logger;
         }
-
-       
+      
 
         public async Task<TResponce> Handle(TRequest request, RequestHandlerDelegate<TResponce> next, CancellationToken cancellationToken)
         {

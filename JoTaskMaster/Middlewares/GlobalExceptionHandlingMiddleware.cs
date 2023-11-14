@@ -6,7 +6,7 @@ using System.Text.Json;
 using FluentAssertions;
 using FluentValidation;
 using System.ComponentModel;
-using JoTaskMaster.Application.Exceptions.ValidationExceptions;
+
 
 namespace JoTaskMaster.Api.Middlewares
 {
@@ -20,7 +20,7 @@ namespace JoTaskMaster.Api.Middlewares
         {
             context.Response.StatusCode = (int)code;
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonSerializer.Serialize(problem));
+         await context.Response.WriteAsync(JsonSerializer.Serialize(problem));
         }
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
@@ -37,10 +37,10 @@ namespace JoTaskMaster.Api.Middlewares
                     var workException = (WorkException)ex;
                     await ProblemResponseAsync(workException.StatusCode, workException.ProblemDetails, context);
                 }
-                var ss = ex.GetType().ToString();
-                if(ex is ValidationsException)
+
+                else if(ex is FluentValidation.ValidationException)
                 {
-                    var valException = (ValidationsException)ex;
+                    var valException = (FluentValidation.ValidationException)ex;
                     var pb = new ProblemDetails()
                     {
                         Type = "Valiadation Exception",

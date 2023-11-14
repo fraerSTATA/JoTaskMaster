@@ -37,7 +37,7 @@ namespace JoTaskMaster.Application
             services.AddScoped(
                 typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviors<,>));
             services.AddTransient(
-                typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+               typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
 
     }

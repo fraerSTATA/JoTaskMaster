@@ -13,7 +13,9 @@ using JoTaskMaster.Application;
 [assembly: InternalsVisibleTo("JoTaskMaster.Tests")]
 namespace JoTaskMaster.Application.Features.Projects.Commands.CreateCommand
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public record CreateProjectCommand : IRequest<Result<int>>, IMapFrom<Project>
     {
         public string ProjectName { get; set; } = null!;
