@@ -11,7 +11,7 @@ namespace JoTaskMaster.Application.Behaviors
 {
     public class LoggingPipelineBehaviors<TRequest, TResponce> :
         IPipelineBehavior<TRequest, TResponce>
-       where TRequest :  IRequest<TResponce>
+       where TResponce : IResult
 
     {
         private readonly ILogger<LoggingPipelineBehaviors<TRequest, TResponce>> _logger;
