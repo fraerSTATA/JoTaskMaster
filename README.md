@@ -12,4 +12,4 @@
 
   ### Реализация API
   
-  <img src="https://github.com/fraerSTATA/AviaKey_TestTask/assets/58880846/e4cf436f-8c2e-4d34-bdd3-98245b4a13d7" alt="image" width="1100" height="800">
+
