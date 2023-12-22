@@ -27,48 +27,57 @@ namespace JoTaskMaster.Api.Controllers
         /// <summary>
         /// Get user by id query
         /// </summary>
-        /// <param name="id">Represent user id</param>
-        /// <returns>Result of query</returns>
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Result<UserDTO>>> GetUserById(int id)
+        /// <param name="userId">Represent user id</param>
+        /// <returns>User dto</returns>
+        /// <response code="200">Returns user dto</response>
+        /// <response code="404">User not found</response>
+        [HttpGet("Get_User_By_Id/{userId:int}")]
+        public async Task<ActionResult<Result<UserDTO>>> GetUserById(int userId)
         {
-            return await _mediator.Send(new GetUserByIdQuery(id));
+            return await _mediator.Send(new GetUserByIdQuery(userId));
 
         }
 
         /// <summary>
         /// Get all users query
         /// </summary>
-        /// <returns>List of users</returns>
-        [HttpGet]
-
+        /// <returns>List of user dto</returns>
+        /// <response code="200">Returns list of user dto</response>
+        /// <response code="404">Users not found</response>
+        [HttpGet("Get_All_Users")]
         public async Task<ActionResult<Result<List<GetAllUsersDTO>>>> GetAllUsers()
         {
             return await _mediator.Send(new GetAllUsersQuery());
         }
-
-        /// <summary>
-        /// Get User by email query
-        /// </summary>
-        /// <returns>List of users</returns>
+        
         #endregion
-
+        
         #region Post methods
-        [HttpPost]
-        public async Task<ActionResult<Result<int>>> Create(CreateUserCommand command)
+        
+        /// <summary>
+        /// Create User
+        /// </summary>
+        /// <param name="command">Represent create user command</param>
+        /// <returns>List of user dto</returns>
+        /// <response code="200">Returns updated user id</response>\
+        /// <response code="400">Bad arguments</response>
+        /// <response code="404">User not found</response>
+        [HttpPost("Create_User")]
+        public async Task<ActionResult<Result<int>>> Create([FromBody] CreateUserCommand command)
         {
             return await _mediator.Send(command);
         }
         #endregion
 
         #region Delete methods
-        // <summary>
-        /// Get all users query
+        /// <summary>
+        /// Delete user query
         /// </summary>
-        /// <returns>List of users</returns>
-        [HttpDelete]
-
-        public async Task<ActionResult<Result<int>>> Delete(DeleteUserCommand command)
+        /// <returns>Deleted user id</returns>
+        /// <response code="200">Returns deleted user id</response>\
+        /// <response code="404">User not found</response>
+        [HttpDelete("Delete_User")]
+        public async Task<ActionResult<Result<int>>> Delete([FromBody] DeleteUserCommand command)
         {
             return await _mediator.Send(command);
         }
@@ -78,12 +87,13 @@ namespace JoTaskMaster.Api.Controllers
         /// <summary>
         /// Update User query
         /// </summary>
-        /// <returns>List of users</returns>
-        [HttpPut]
-
-        public async Task<ActionResult<Result<int>>> UpdateUser()
+        /// <returns>Updated user id</returns>
+        /// <response code="200">Returns updated user id</response>\
+        /// <response code="404">User not found</response>
+        [HttpPut("Update_User")]
+        public async Task<ActionResult<Result<int>>> UpdateUser([FromBody] UpdateUserCommand command)
         {
-            return await _mediator.Send(new UpdateUserCommand());
+            return await _mediator.Send(command);
         }
         #endregion
     }
