@@ -58,7 +58,7 @@ namespace JoTaskMaster.Api.Middlewares
                         Status = (int)HttpStatusCode.InternalServerError,
                         Type = "Server Error",
                         Title = "Server Error",
-                        Detail = "An internal server has occurred"
+                        Detail = ex.Message
                     };
                     await ProblemResponseAsync(HttpStatusCode.InternalServerError, pb, context);
                 }

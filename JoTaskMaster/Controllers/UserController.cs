@@ -12,12 +12,12 @@ using JoTaskMaster.Application.Features.Users.Commands.UpdateCommand;
 
 namespace JoTaskMaster.Api.Controllers
 {
-    public class UsersController : ApiControllerBase
+    public class UserController : ApiControllerBase
     {
 
         private readonly IMediator _mediator;
 
-        public UsersController(IMediator mediator)
+        public UserController(IMediator mediator)
         {
             _mediator = mediator;
         }

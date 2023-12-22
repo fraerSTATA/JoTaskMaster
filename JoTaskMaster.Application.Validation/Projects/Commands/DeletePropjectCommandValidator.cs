@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace JoTaskMaster.Application.Validation.Projects.Commands
 {
-    public sealed class DeletePropjectCommandValidator : AbstractValidator<DeleteProjectCommand>
+    public sealed class DeleteProjectCommandValidator : AbstractValidator<DeleteProjectCommand>
     {
-        public DeletePropjectCommandValidator(IProjectService projectService)
+        public DeleteProjectCommandValidator(IProjectService projectService)
         {
             RuleFor(p => p.Id).MustAsync(async (projectId, _) =>
             {

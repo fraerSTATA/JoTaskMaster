@@ -28,4 +28,10 @@
     <ProjectReference Include="..\JoTaskMaster.Shared\JoTaskMaster.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>

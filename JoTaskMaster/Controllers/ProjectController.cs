@@ -8,9 +8,6 @@ using JoTaskMaster.Application.Features.Projects.Queries.GetProjectById;
 using JoTaskMaster.Application.Features.Projects.Queries.GetProjectByManager;
 using JoTaskMaster.Application.Features.Projects.Queries.GetProjectByName;
 using JoTaskMaster.Application.Features.Projects.Queries.GetProjectByStatus;
-using JoTaskMaster.Application.Features.Users.Queries;
-using JoTaskMaster.Application.Validation.Projects;
-using JoTaskMaster.Domain.Entities;
 using JoTaskMaster.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,10 +25,10 @@ namespace JoTaskMaster.Api.Controllers
         /// <summary>
         /// Get all projects
         /// </summary>
-        /// <param name="id">Board id</param>
+        /// <param name="id">Project id</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_All_Projects")]
+        [HttpGet("{Get_All_Projects}")]
         public async Task<ActionResult<Result<List<ProjectDTO>>>> GetAllProjects()
         {
             return await _mediator.Send(new GetAllProjectsQuery());
@@ -44,7 +41,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="projectId">Project id</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_Project_By_Id/{projectId:int}")]
+        [HttpGet("project/Get_Project_By_Id/{projectId:int}")]
         public async Task<ActionResult<Result<ProjectDTO>>> GetProjectById(int projectId)
         {
             return await _mediator.Send(new GetProjectByIdQuery(projectId));
@@ -67,7 +64,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <summary>
         /// Get project by name
         /// </summary>
-        /// <param name="id">Board id</param>
+        /// <param name="projectName">Project name</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
         [HttpGet("Get_Projects_By_Name")]

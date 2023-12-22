@@ -19,7 +19,21 @@ namespace JoTaskMaster.Persistence.RelationalDB.Extensions
 
         public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            string? connectionString = null;
+            if (Environment.GetEnvironmentVariable("DB_SERVER") is null)
+            {
+                connectionString = configuration.GetConnectionString("DefaultConnection");
+            }
+            else
+            {
+                connectionString = $" Server = {Environment.GetEnvironmentVariable("DB_SERVER")};" +
+                                   $" Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+                                   $" User Id={Environment.GetEnvironmentVariable("DB_USER")};" +
+                                   $" Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
+                                   $" MultipleActiveResultSets=True; " +
+                                   $"TrustServerCertificate=True"; //configuration.GetConnectionString("DefaultConnection");
+            }
+
             services.AddDbContext<JoTaskMasterDbContext>(options => 
             options.UseSqlServer(connectionString,
             builder => builder.MigrationsAssembly(typeof(JoTaskMasterDbContext).Assembly.FullName)));
