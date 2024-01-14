@@ -15,6 +15,13 @@ builder.Services.AddPersistanceLayer(builder.Configuration);
 builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 builder.Services.AddControllers();
 
+builder.Services.AddCors(o => o.AddPolicy("frontend", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 builder.Services.Configure<RouteOptions>(options =>
 {
     options.LowercaseUrls = true;
@@ -26,7 +33,11 @@ builder.Services.AddSwaggerGen(options =>{
 });
 
 var app = builder.Build();
+
+
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+app.UseCors("frontend");
+app.UseHttpsRedirection();
 app.MapControllers();
 
 app.UseSwagger();
@@ -35,5 +46,6 @@ app.UseSwaggerUI(config =>
     config.RoutePrefix = string.Empty;
     config.SwaggerEndpoint("swagger/v1/swagger.json", "private api");
 });
+
 app.Run();
                           
