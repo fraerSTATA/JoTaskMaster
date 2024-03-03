@@ -27,7 +27,7 @@ namespace JoTaskMaster.Api.Controllers
         /// </summary>
         /// <response code="200">Returns List of project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_All_Projects")]
+        [HttpGet("")]
         public async Task<ActionResult<Result<List<ProjectDTO>>>> GetAllProjects()
         {
             return await _mediator.Send(new GetAllProjectsQuery());
@@ -40,7 +40,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="projectId">Project id</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_Project_By_Id/{projectId:int}")]
+        [HttpGet("{projectId:int}")]
         public async Task<ActionResult<Result<ProjectDTO>>> GetProjectById(int projectId)
         {
             return await _mediator.Send(new GetProjectByIdQuery(projectId));
@@ -52,7 +52,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="userId">User id</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_Projects_By_User/{userId:int}")]
+        [HttpGet("/user/{userId:int}")]
         public async Task<ActionResult<Result<List<ProjectDTO>>>> GetProjectByUser(int userId)
         {
             return await _mediator.Send(new GetProjectByUserQuery(userId));
@@ -64,7 +64,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="projectName">Project name</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_Projects_By_Name/{projectName}")]
+        [HttpGet("{projectName}")]
         public async Task<ActionResult<Result<ProjectDTO>>> GetProjectByName(string projectName)
         {
             return await _mediator.Send(new GetProjectByNameQuery(projectName));
@@ -76,7 +76,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="statusId">Status id</param>
         /// <response code="200">Returns List project dto</response>
         /// <response code="404">Projects not found</response>
-        [HttpGet("Get_Projects_By_Status/{statusId:int}")]
+        [HttpGet("/status/{statusId:int}")]
         public async Task<ActionResult<Result<List<ProjectDTO>>>> GetProjectByStatus(int statusId)
         {
             return await _mediator.Send(new GetProjectByStatusQuery(statusId));
@@ -91,7 +91,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="command">Create project command which includes require parametres</param>
         /// <response code="200">Project Created</response>
         /// <response code="400">Bad request</response>
-        [HttpPost("Create_Project")]
+        [HttpPost("")]
         public async Task<ActionResult<Result<int>>> CreateProject([FromBody] CreateProjectCommand command)
         {
                 return await _mediator.Send(command);
@@ -106,7 +106,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <param name="command">Command which inludes require parametres</param>
         /// <response code="200">Project Deleted</response>
         /// <response code="404">Project not found</response>
-        [HttpDelete("Delete_Project")]
+        [HttpDelete("")]
         public async Task<ActionResult<Result<int>>> DeleteProject([FromBody] DeleteProjectCommand command)
         {
             return await _mediator.Send(command);

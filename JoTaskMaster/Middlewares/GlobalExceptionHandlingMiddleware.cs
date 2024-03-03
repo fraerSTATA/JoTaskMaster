@@ -20,7 +20,7 @@ namespace JoTaskMaster.Api.Middlewares
         {
             context.Response.StatusCode = (int)code;
             context.Response.ContentType = "application/json";
-         await context.Response.WriteAsync(JsonSerializer.Serialize(problem));
+            await context.Response.WriteAsync(JsonSerializer.Serialize(problem));
         }
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {

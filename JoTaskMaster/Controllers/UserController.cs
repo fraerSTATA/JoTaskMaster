@@ -31,7 +31,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <returns>User dto</returns>
         /// <response code="200">Returns user dto</response>
         /// <response code="404">User not found</response>
-        [HttpGet("Get_User_By_Id/{userId:int}")]
+        [HttpGet("{userId:int}")]
         public async Task<ActionResult<Result<UserDTO>>> GetUserById(int userId)
         {
             return await _mediator.Send(new GetUserByIdQuery(userId));
@@ -44,7 +44,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <returns>List of user dto</returns>
         /// <response code="200">Returns list of user dto</response>
         /// <response code="404">Users not found</response>
-        [HttpGet("Get_All_Users")]
+        [HttpGet("")]
         public async Task<ActionResult<Result<List<GetAllUsersDTO>>>> GetAllUsers()
         {
             return await _mediator.Send(new GetAllUsersQuery());
@@ -62,7 +62,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <response code="200">Returns updated user id</response>\
         /// <response code="400">Bad arguments</response>
         /// <response code="404">User not found</response>
-        [HttpPost("Create_User")]
+        [HttpPost("")]
         public async Task<ActionResult<Result<int>>> Create([FromBody] CreateUserCommand command)
         {
             return await _mediator.Send(command);
@@ -76,7 +76,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <returns>Deleted user id</returns>
         /// <response code="200">Returns deleted user id</response>\
         /// <response code="404">User not found</response>
-        [HttpDelete("Delete_User")]
+        [HttpDelete("")]
         public async Task<ActionResult<Result<int>>> Delete([FromBody] DeleteUserCommand command)
         {
             return await _mediator.Send(command);
@@ -90,7 +90,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <returns>Updated user id</returns>
         /// <response code="200">Returns updated user id</response>\
         /// <response code="404">User not found</response>
-        [HttpPut("Update_User")]
+        [HttpPut("")]
         public async Task<ActionResult<Result<int>>> UpdateUser([FromBody] UpdateUserCommand command)
         {
             return await _mediator.Send(command);

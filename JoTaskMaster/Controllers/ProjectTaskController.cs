@@ -92,7 +92,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <response code="200">Returns created project task id</response>
         /// <response code="400">Bad Request</response>
         #region Post methods
-        [HttpPost("Create_Project_Task")]
+        [HttpPost("")]
         public async Task<ActionResult<Result<int>>> CreateProjectTask([FromBody]CreateTaskCommand command)
         {
             return await _mediator.Send(command);
@@ -110,7 +110,7 @@ namespace JoTaskMaster.Api.Controllers
         /// <response code="200">Returns deleted project task id</response>
         /// <response code="400">Bad Request</response>
         /// <response code="404">Project task not found</response>
-        [HttpDelete("Delete_Project_Task")]
+        [HttpDelete("")]
         public async Task<ActionResult<Result<int>>> DeleteProjectTask([FromBody] DeleteTaskCommand command)
         {
             return await _mediator.Send(command);
